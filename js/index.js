@@ -451,7 +451,7 @@ function update(data) {
     .attr("class", "y axis")
     .call(yAxis_agency)
     .append("text")
-    .attr("y", -20)
+    .attr("y", -10)
     .attr('fill', '#000')
     .attr('font-size', 12)
     .style("text-anchor", "end")
