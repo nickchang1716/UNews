@@ -31,7 +31,6 @@ function selectCountry() {
   d3.select('#chart svg').remove();
 
   // console.log(status.value + ": " + country.value);
-
   if (country.value !== "") {
     if (status.value == "arrival") {
       drawArrival(arrivalData[country.value]);
@@ -380,8 +379,8 @@ var margin_agency = {
     bottom: 30,
     left: 80
   },
-  width_agency = 900 - margin_agency.left - margin_agency.right,
-  height_agency = 500 - margin_agency.top - margin_agency.bottom;
+  width_agency = 800 - margin_agency.left - margin_agency.right,
+  height_agency = 400 - margin_agency.top - margin_agency.bottom;
 
 var x = d3.scaleBand()
   .rangeRound([0, width_agency], .1);
@@ -389,9 +388,9 @@ var x = d3.scaleBand()
 var y = d3.scaleLinear()
   .range([height_agency, 0]);
 
-var xAxis = d3.axisBottom(x);
+var xAxis_agency = d3.axisBottom(x);
 
-var yAxis = d3.axisLeft(y);
+var yAxis_agency = d3.axisLeft(y);
 
 var color = d3.scaleOrdinal()
   .range(["#DD84A1", "#FFBBBE", "#FEE698", "#CBE3B3", "#40DEF1"]);
@@ -439,18 +438,22 @@ function update(data) {
   svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height_agency + ")")
-    .call(xAxis)
+    .call(xAxis_agency)
     .append("text")
-    .attr("transform", "translate(" + (width_agency - margin_agency.right) + "," + margin_agency.right + ")")
+    .attr("transform", "translate(" + width_agency + "," + margin_agency.right + ")")
+    .attr('fill', '#000')
+    .attr('font-size', 12)
     .style('font-weight', 'bold')
     .text("年/月");
 
   //繪製y軸
   svg.append("g")
     .attr("class", "y axis")
-    .call(yAxis)
+    .call(yAxis_agency)
     .append("text")
-    .attr("y", -10)
+    .attr("y", -20)
+    .attr('fill', '#000')
+    .attr('font-size', 12)
     .style("text-anchor", "end")
     .style('font-weight', 'bold')
     .text("營收");
@@ -468,7 +471,7 @@ function update(data) {
     .enter()
     .append('text')
     .attr('class', 'bar-label')
-    .attr('text-anchor', 'start')
+    .attr('text-anchor', 'middle')
     .attr('fill', '#222')
     .attr('stroke', '#222')
     .attr('font-size', 20)
@@ -476,7 +479,7 @@ function update(data) {
       return formatNumber(d.value.toString()) + ' 元';
     })
     .attr("x", function(d) {
-      return x(d.rate) + 20;
+      return x(d.rate) + x.bandwidth() / 2;
     })
     .attr("y", function(d) {
       return y(0);

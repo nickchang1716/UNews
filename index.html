@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
@@ -39,25 +39,27 @@
       <div class="block-horizontal-center img-size">這裡放航班出境圖表(地球)</div>
       <!-- 出境、入境折線長條圖 -->
       <div class="block-horizontal-center img-size">
-        <select id="status" onchange="selectStatus()">
-          <option value="arrival">入境</option>
-          <option value="departure">出境</option>
-        </select>
-        <select id="country" onchange="selectCountry()">
-          <option value="">--國家--</option>
-          <option value="Japan">日本</option>
-          <option value="China">中國大陸</option>
-          <option value="Hongkong">香港</option>
-          <option value="Korea">南韓</option>
-          <option value="Vietnam">越南</option>
-          <option value="Usa">美國</option>
-          <option value="Thailand">泰國</option>
-          <option value="Philippines">菲律賓</option>
-          <option value="Singapore">新加坡</option>
-          <option value="Malaysia">馬來西亞</option>
-        </select>
-        <br>
         <div class="airport-graph">
+          <div class="">
+            <select id="status" onchange="selectStatus()">
+              <option value="arrival">入境</option>
+              <option value="departure">出境</option>
+            </select>
+            <select id="country" onchange="selectCountry()">
+              <option value="">--國家--</option>
+              <option value="Japan">日本</option>
+              <option value="China">中國大陸</option>
+              <option value="Hongkong">香港</option>
+              <option value="Korea">南韓</option>
+              <option value="Vietnam">越南</option>
+              <option value="Usa">美國</option>
+              <option value="Thailand">泰國</option>
+              <option value="Philippines">菲律賓</option>
+              <option value="Singapore">新加坡</option>
+              <option value="Malaysia">馬來西亞</option>
+            </select>
+          </div>
+          <br>
           <div id="chart"></div>
           <br>
           <div id="note"></div>
@@ -70,15 +72,17 @@
         由於航空公司大幅減班、客運班機大減，民眾擔憂染疫也盡量避免非必要的外出與旅行，導致旅行需求急劇減少。而為防堵疫情擴散，交通部觀光局頒布禁令，禁止旅行社出團及接待國外旅行團直至五月底，解禁將視疫情發展而定，旅遊觀光產業首當其衝，無法接、出團致使旅行社頓失收入。鳳凰旅遊總經理卞傑民說：「大家（旅行社）面臨的狀況就是一樣的，營收幾乎都是趨近於零。」
       </p>
       <div class="block-horizontal-center img-size">
-        <h2>旅行社12月至4月每月營收變化圖</h2>
-        <div id="btnDiv">
-          <button class="btn btnActive" onclick="update(data1)">雄獅</button>
-          <button class="btn" onclick="update(data2)">鳳凰</button>
-          <button class="btn" onclick="update(data3)">五福</button>
-          <button class="btn" onclick="update(data4)">山富</button>
-          <button class="btn" onclick="update(data5)">燦星</button>
-        </div>
-        <div id="travelAgency">
+        <div class="agency-graph">
+          <h3>旅行社12月至4月每月營收變化圖</h3>
+          <div id="btnDiv">
+            <button class="btn btnActive" onclick="update(data1)">雄獅</button>
+            <button class="btn" onclick="update(data2)">鳳凰</button>
+            <button class="btn" onclick="update(data3)">五福</button>
+            <button class="btn" onclick="update(data4)">山富</button>
+            <button class="btn" onclick="update(data5)">燦星</button>
+          </div>
+          <br>
+          <div id="travelAgency"></div>
         </div>
       </div>
       <p class="article-text block-horizontal-center width">
