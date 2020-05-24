@@ -103,11 +103,26 @@ body {
     background-color: gray; 
 }
 
-.active{
+.btnActive{
   border: 4px solid #999999;
     color: #111111;
     text-decoration: none;
     background-color: gray; 
+}
+
+.item{
+  margin: 30px;
+}
+
+.item img{
+  margin-bottom: 30px;
+  width: 30%;
+  float: left;
+}
+
+.reliefText{
+  float: right;
+  width: 65%;
 }
 
 .footer {
