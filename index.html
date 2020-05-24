@@ -7,12 +7,12 @@
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/animate.css">
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://d3js.org/d3.v3.min.js"></script>
   <title>疫症下的「航」業困境</title>
 </head>
 
@@ -22,160 +22,195 @@
     <p class="article-text block-horizontal-center width">
       原先繁忙的機場空蕩蕩，近日出入境旅客更一度掛零，客機停滿機坪，空中交通幾近停擺。新型冠狀病毒（COVID-19）疫情在全世界大流行，為阻止疫情擴大，世界各國紛紛加強邊境管制及入境後檢疫措施，外籍人士無法來台，國人也難以出國，疫情對航空產業衝擊甚鉅，也重創觀光旅遊相關產業。
     </p>
-    <h2 class="block-horizontal-center sub-title">航空業受疫情重擊 短期內難望恢復</h2>
-    <p class="article-text block-horizontal-center width">
-      疫情持續在世界各地延燒，台灣自3月21日起，提升全球旅遊警示至第三級，非本國籍人士一律限制入境，所有入境者皆需居家檢疫14天，中央流行疫情指揮中心近日也宣布持續實施「限縮兩岸航空客運直航航線」及「全面禁止旅客來台轉機」之限制，解禁須視國內外疫情狀況而定。新冠肺炎疫情為航空產業帶來前所未見的衝擊和挑戰，搭機旅客急遽減少，業績一片慘澹，航空公司紛紛以取消大量航班因應。
-    </p>
-    <div class="block-horizontal-center img-size">這裡放航班出境圖表(地球)</div>
-    <p class="article-text block-horizontal-center width">
-      根據交通部民航局統計資料，今年四月航班與去年同期比較，全世界最繁忙航線之一的桃園往返香港航班減少約88％班次、載客率由80.6％降至26.4％；以往載客量平均水準都有八九成的台日航線也大幅下滑，桃園往返東京成田航線減少約六成航班，載客率從92.0％大跌至19.5％；桃園往返大阪航線減少約65.5％班次，載客率從87.2％大跌到14.3％。兩岸直航班機則減少約84.7％的班次。
-    </p>
-    <p class="article-text block-horizontal-center width">
-      面對疫情影響，身處第一線的空服員因須接觸不同旅客，也成為高風險群。桃園市空服員職業工會秘書長周聖凱表示，相較於機師和地勤人員，須時常面對旅客的空服員受感染機會也更高。除染疫風險外，空服員薪資也受影響。周聖凱說明，空服員和機師的薪資基本上依據飛行時數計算，大砍航班飛行時數一定會下降，「航班少空服員和機師的薪水就會掉比較快，因此他們在薪水上的壓力也比較大。」
-    </p>
-    <div class="block-horizontal-center img-size">這裡放航班入境圖表(平面)</div>
-    <h2 class="block-horizontal-center sub-title">身處「海嘯第一排」 疫情重創旅遊產業</h2>
-    <p class="article-text block-horizontal-center width">
-      由於航空公司大幅減班、客運班機大減，民眾擔憂染疫也盡量避免非必要的外出與旅行，導致旅行需求急劇減少。而為防堵疫情擴散，交通部觀光局頒布禁令，禁止旅行社出團及接待國外旅行團直至五月底，解禁將視疫情發展而定，旅遊觀光產業首當其衝，無法接、出團致使旅行社頓失收入。鳳凰旅遊總經理卞傑民說：「大家（旅行社）面臨的狀況就是一樣的，營收幾乎都是趨近於零。」
-    </p>
-    <div class="block-horizontal-center img-size">
-      <h2 >旅行社12月至4月每月營收變化圖</h2>
-      <div id="btnDiv" >
-        <button class="btn btnActive" onclick="update(data1)">雄獅</button>
-        <button class="btn" onclick="update(data2)">鳳凰</button>
-        <button class="btn" onclick="update(data3)">五福</button>
-        <button class="btn" onclick="update(data4)">山富</button>
-        <button class="btn" onclick="update(data5)">燦星</button>
-      </div>
-      <div id="travelAgency">
+    <div id="section1" class="section">
+      <h2 class="block-horizontal-center sub-title">航空業受疫情重擊 短期內難望恢復</h2>
+      <p class="article-text block-horizontal-center width">
+        疫情持續在世界各地延燒，台灣自3月21日起，提升全球旅遊警示至第三級，非本國籍人士一律限制入境，所有入境者皆需居家檢疫14天，中央流行疫情指揮中心近日也宣布持續實施「限縮兩岸航空客運直航航線」及「全面禁止旅客來台轉機」之限制，解禁須視國內外疫情狀況而定。新冠肺炎疫情為航空產業帶來前所未見的衝擊和挑戰，搭機旅客急遽減少，業績一片慘澹，航空公司紛紛以取消大量航班因應。
+      </p>
+      <p class="article-text block-horizontal-center width">
+        根據交通部民航局統計資料，今年四月航班與去年同期比較，全世界最繁忙航線之一的桃園往返香港航班減少約88％班次、載客率由80.6％降至26.4％；以往載客量平均水準都有八九成的台日航線也大幅下滑，桃園往返東京成田航線減少約六成航班，載客率從92.0％大跌至19.5％；桃園往返大阪航線減少約65.5％班次，載客率從87.2％大跌到14.3％。兩岸直航班機則減少約84.7％的班次。
+      </p>
+      <p class="article-text block-horizontal-center width">
+        面對疫情影響，身處第一線的空服員因須接觸不同旅客，也成為高風險群。桃園市空服員職業工會秘書長周聖凱表示，相較於機師和地勤人員，須時常面對旅客的空服員受感染機會也更高。除染疫風險外，空服員薪資也受影響。周聖凱說明，空服員和機師的薪資基本上依據飛行時數計算，大砍航班飛行時數一定會下降，「航班少空服員和機師的薪水就會掉比較快，因此他們在薪水上的壓力也比較大。」
+      </p>
+      <!-- 地球圖 -->
+      <div class="block-horizontal-center img-size">這裡放航班出境圖表(地球)</div>
+      <!-- 出境、入境折線長條圖 -->
+      <div class="block-horizontal-center img-size">
+        <select id="status" onchange="selectStatus()">
+          <option value="arrival">入境</option>
+          <option value="departure">出境</option>
+        </select>
+        <select id="country" onchange="selectCountry()">
+          <option value="">--國家--</option>
+          <option value="Japan">日本</option>
+          <option value="China">中國大陸</option>
+          <option value="Hongkong">香港</option>
+          <option value="Korea">南韓</option>
+          <option value="Vietnam">越南</option>
+          <option value="Usa">美國</option>
+          <option value="Thailand">泰國</option>
+          <option value="Philippines">菲律賓</option>
+          <option value="Singapore">新加坡</option>
+          <option value="Malaysia">馬來西亞</option>
+        </select>
+        <br>
+        <div class="airport-graph">
+          <div id="chart"></div>
+          <br>
+          <div id="note"></div>
+        </div>
       </div>
     </div>
-    <p class="article-text block-horizontal-center width">
-      卞傑民提到，鳳凰旅遊原先一年出團的數量約為1500團，自一月疫情爆發至今，受影響的團數約達5、600團。因世界各國實施邊境管制及旅遊限制，「根本連出去的機會都沒有，那已經無關努不努力了，而是你根本沒有機會努力。」卞傑民說。
-    </p>
-    <p class="article-text block-horizontal-center width">
-      另一方面，各大旅行社營收下滑的程度亦非同小可。根據公開資訊觀測站資料顯示，截至今年四月底，雄獅旅行社的累計營收成長率相較去年同期，衰退約53%，損失高達約52億；鳳凰旅遊累計營收成長率衰退約51.86%；而五福旅遊亦減少約58.75%。
-    </p>
-    <h2 class="block-horizontal-center sub-title">因應衝擊 旅行社調整營運模式</h2>
-    <p class="article-text block-horizontal-center width">
-      隨著收入急遽減少，各大旅行社不得不減少開支，以度過這段艱難時期。鳳凰旅遊鼓勵員工盡量在這段時間休假，並放寬留職停薪的申請。卞傑民說明，基本上希望先消化員工能請的假，加上員工若有安排短期進修，也開放讓其申請特殊事假。「畢竟業務量馬上就是掉落很多，幾乎是電話都不太會響。」
-    </p>
-    <p class="article-text block-horizontal-center width">
-      此外，為減少營運成本，許多旅行社也縮減門市營業時間、減少員工上班時數。雄獅旅遊部分門市假日不營業；東南旅遊大部分門市安排周六與周日店休。而鳳凰旅遊原先八點半上班，六點下班，自四月起開始調整為九點上班，五點下班。卞傑民解釋，工作時間每天縮短一個半小時，一方面節省開支，一方便也讓員工避開上下班尖峰時段壅塞的人流。
-    </p>
-    <div class="block-horizontal-center img-size" style="position:relative; height:1000px">
-      <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png" style="position:absolute;top:90px; left:90px; width:30%">
-      <p style="position: absolute; top:90px ; right:90px">
-        鳳凰旅行的方針
+    <div id="section2" class="section">
+      <h2 class="block-horizontal-center sub-title">身處「海嘯第一排」 疫情重創旅遊產業</h2>
+      <p class="article-text block-horizontal-center width">
+        由於航空公司大幅減班、客運班機大減，民眾擔憂染疫也盡量避免非必要的外出與旅行，導致旅行需求急劇減少。而為防堵疫情擴散，交通部觀光局頒布禁令，禁止旅行社出團及接待國外旅行團直至五月底，解禁將視疫情發展而定，旅遊觀光產業首當其衝，無法接、出團致使旅行社頓失收入。鳳凰旅遊總經理卞傑民說：「大家（旅行社）面臨的狀況就是一樣的，營收幾乎都是趨近於零。」
       </p>
-      <br>
-      <p style="position: absolute; bottom:90px; left:90px">
-        覺旅的方針
+      <div class="block-horizontal-center img-size">
+        <h2>旅行社12月至4月每月營收變化圖</h2>
+        <div id="btnDiv">
+          <button class="btn btnActive" onclick="update(data1)">雄獅</button>
+          <button class="btn" onclick="update(data2)">鳳凰</button>
+          <button class="btn" onclick="update(data3)">五福</button>
+          <button class="btn" onclick="update(data4)">山富</button>
+          <button class="btn" onclick="update(data5)">燦星</button>
+        </div>
+        <div id="travelAgency">
+        </div>
+      </div>
+      <p class="article-text block-horizontal-center width">
+        卞傑民提到，鳳凰旅遊原先一年出團的數量約為1500團，自一月疫情爆發至今，受影響的團數約達5、600團。因世界各國實施邊境管制及旅遊限制，「根本連出去的機會都沒有，那已經無關努不努力了，而是你根本沒有機會努力。」卞傑民說。
       </p>
-      <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png" style="position: absolute; bottom:90px; right:90px; width:30%">
-
-
+      <p class="article-text block-horizontal-center width">
+        另一方面，各大旅行社營收下滑的程度亦非同小可。根據公開資訊觀測站資料顯示，截至今年四月底，雄獅旅行社的累計營收成長率相較去年同期，衰退約53%，損失高達約52億；鳳凰旅遊累計營收成長率衰退約51.86%；而五福旅遊亦減少約58.75%。
+      </p>
     </div>
-    <p class="article-text block-horizontal-center width">
-      除了降低支出成本外，各旅行社也祭出各種措施以因應此次疫情下的衝擊。如鳳凰旅遊近期推出更加豐富國內旅遊行程，且配合防疫措施、行程安排上盡可能避免人潮群聚，旅行社配合觀光局的登山、健行行程，設計出小家庭出遊行程，減少群聚風險，讓民眾安心出遊。隨著國內疫情趨緩，鳳凰旅遊也將推出移動距離更遠的國內旅遊行程，「等（民眾）突破這些心理障礙的話，我們就是提供相對應的產品。」
-    </p>
-    <p class="article-text block-horizontal-center width">
-      除販賣旅遊商品的營收外，旅行社也仰賴多角化經營，藉其他方面的獲利以減少損失。鳳凰旅遊除了本業外，也承租土城的日月光廣場，承包給不同商家，藉由經營管理獲得營收。另一方面，鳳凰旅遊也正規劃拓展小琉球的飯店業務，希望將旅遊的相關觸角向外延伸，彌補此次疫情帶來的衝擊。
-    </p>
-    <h2 class="block-horizontal-center sub-title">各行各業受「情」所困　政府政策是否有效紓緩？</h2>
-    <p class="article-text block-horizontal-center width">
-      面對來勢洶洶的新冠肺炎，全球經濟皆受到毀滅性的衝擊。政府近日緊鑼密鼓為受疫情影響的不同產業推出量身設計的紓困方案。勞動部就疫情制訂了「安心就業計劃」、「充電再出發計劃」等援助政策，政策規定申請人必須在與就職公司簽訂「無薪假條款」的狀況下，才能提出申請。以航空業為例，空服員的薪資雖減少，但因其仍有基本工資，因此未符合資格申請補助。然而，空服員的薪水主要受飛行時數影響，在航空業進入寒冬的環境下，一般空服員的薪資從過去平均水準有7至8萬元新台幣，下跌至2萬到3萬元的底薪，收入驟減無疑影響了他們的生活。對此，周聖凱表示，希望政府以人工實際工資所得作審核標準，而非單憑有無放「無薪假」定奪，這樣勞工才能真正得到保障。
-    </p>
-    <div class="block-horizontal-center img-size" style="position:relative;">
-      <div id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+    <div id="section3" class="section">
+      <h2 class="block-horizontal-center sub-title">因應衝擊 旅行社調整營運模式</h2>
+      <p class="article-text block-horizontal-center width">
+        隨著收入急遽減少，各大旅行社不得不減少開支，以度過這段艱難時期。鳳凰旅遊鼓勵員工盡量在這段時間休假，並放寬留職停薪的申請。卞傑民說明，基本上希望先消化員工能請的假，加上員工若有安排短期進修，也開放讓其申請特殊事假。「畢竟業務量馬上就是掉落很多，幾乎是電話都不太會響。」
+      </p>
+      <p class="article-text block-horizontal-center width">
+        此外，為減少營運成本，許多旅行社也縮減門市營業時間、減少員工上班時數。雄獅旅遊部分門市假日不營業；東南旅遊大部分門市安排周六與周日店休。而鳳凰旅遊原先八點半上班，六點下班，自四月起開始調整為九點上班，五點下班。卞傑民解釋，工作時間每天縮短一個半小時，一方面節省開支，一方便也讓員工避開上下班尖峰時段壅塞的人流。
+      </p>
+      <div class="block-horizontal-center img-size" style="position:relative; height:1000px">
+        <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png" style="position:absolute;top:90px; left:90px; width:30%">
+        <p style="position: absolute; top:90px ; right:90px">
+          鳳凰旅行的方針
+        </p>
+        <br>
+        <p style="position: absolute; bottom:90px; left:90px">
+          覺旅的方針
+        </p>
+        <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png" style="position: absolute; bottom:90px; right:90px; width:30%">
+      </div>
+      <p class="article-text block-horizontal-center width">
+        除了降低支出成本外，各旅行社也祭出各種措施以因應此次疫情下的衝擊。如鳳凰旅遊近期推出更加豐富國內旅遊行程，且配合防疫措施、行程安排上盡可能避免人潮群聚，旅行社配合觀光局的登山、健行行程，設計出小家庭出遊行程，減少群聚風險，讓民眾安心出遊。隨著國內疫情趨緩，鳳凰旅遊也將推出移動距離更遠的國內旅遊行程，「等（民眾）突破這些心理障礙的話，我們就是提供相對應的產品。」
+      </p>
+      <p class="article-text block-horizontal-center width">
+        除販賣旅遊商品的營收外，旅行社也仰賴多角化經營，藉其他方面的獲利以減少損失。鳳凰旅遊除了本業外，也承租土城的日月光廣場，承包給不同商家，藉由經營管理獲得營收。另一方面，鳳凰旅遊也正規劃拓展小琉球的飯店業務，希望將旅遊的相關觸角向外延伸，彌補此次疫情帶來的衝擊。
+      </p>
+    </div>
+    <div id="section4" class="section">
+      <h2 class="block-horizontal-center sub-title">各行各業受「情」所困　政府政策是否有效紓緩？</h2>
+      <p class="article-text block-horizontal-center width">
+        面對來勢洶洶的新冠肺炎，全球經濟皆受到毀滅性的衝擊。政府近日緊鑼密鼓為受疫情影響的不同產業推出量身設計的紓困方案。勞動部就疫情制訂了「安心就業計劃」、「充電再出發計劃」等援助政策，政策規定申請人必須在與就職公司簽訂「無薪假條款」的狀況下，才能提出申請。以航空業為例，空服員的薪資雖減少，但因其仍有基本工資，因此未符合資格申請補助。然而，空服員的薪水主要受飛行時數影響，在航空業進入寒冬的環境下，一般空服員的薪資從過去平均水準有7至8萬元新台幣，下跌至2萬到3萬元的底薪，收入驟減無疑影響了他們的生活。對此，周聖凱表示，希望政府以人工實際工資所得作審核標準，而非單憑有無放「無薪假」定奪，這樣勞工才能真正得到保障。
+      </p>
+    </div>
+    <div id="section5" class="section">
+      <div class="block-horizontal-center img-size" style="position:relative;">
+        <div id="myCarousel" class="carousel slide">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png" >
-            <div class="reliefText">
-              <h2>
-                客運業
-              </h2>
-              假的假的假的內容～～～先衝字數排版用
-                經濟部針對營業額衰退逾五成的「內需艱困產業」共有三項直接紓困方案，包括四成薪資補貼、上限兩萬元，補助期間為四到六月；以及每位正職員工一萬元的一次性補貼；加上水電減免七折，水費上限兩萬、電費上限三十萬元。
-                據了解，經濟部等行政單位在清明連假期間就啟動相關子法及細則研擬，目前已接近收尾階段，預計若本週特別預算三讀後即可公告、月底正式實施。
-                官員透露，雖第二波特別預算經費調撥尚須作業時間，但經濟部已盤點近七十億元可立即運用，以上述方案為例，只要業者申請、或水電費減免符合資格者，紓困經費五月就可進帳。
-                官員表示，目前大型餐飲業營收幾乎都衰退超過五成，包括中餐館、酒樓、婚宴會館及部分大型連鎖餐飲等；大型零售業如百貨商場等，也有至少半數業者需要紓困。因不少業者目前仍支持不減班、不裁員，這些業者均符合艱困產業紓困條件。
-                若以一家正職二十名員工的中型餐飲業計算，可一次性獲得約六十餘萬元挹注；包括四成薪資補貼每人約一．六萬到二萬元，以及每人一萬元的一次性補貼，還有水電減免約二到三萬元。
-            </div>
-            
-          </div>
-
-          <div class="item">
-            <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png" >
-            <div class="reliefText">
-              <h2>餐飲業</h2>
-              假的假的假的內容～～～先衝字數排版用
-              經濟部針對營業額衰退逾五成的「內需艱困產業」共有三項直接紓困方案，包括四成薪資補貼、上限兩萬元，補助期間為四到六月；以及每位正職員工一萬元的一次性補貼；加上水電減免七折，水費上限兩萬、電費上限三十萬元。
-              據了解，經濟部等行政單位在清明連假期間就啟動相關子法及細則研擬，目前已接近收尾階段，預計若本週特別預算三讀後即可公告、月底正式實施。
-              官員透露，雖第二波特別預算經費調撥尚須作業時間，但經濟部已盤點近七十億元可立即運用，以上述方案為例，只要業者申請、或水電費減免符合資格者，紓困經費五月就可進帳。
-              官員表示，目前大型餐飲業營收幾乎都衰退超過五成，包括中餐館、酒樓、婚宴會館及部分大型連鎖餐飲等；大型零售業如百貨商場等，也有至少半數業者需要紓困。因不少業者目前仍支持不減班、不裁員，這些業者均符合艱困產業紓困條件。
-              若以一家正職二十名員工的中型餐飲業計算，可一次性獲得約六十餘萬元挹注；包括四成薪資補貼每人約一．六萬到二萬元，以及每人一萬元的一次性補貼，還有水電減免約二到三萬元。
-            </div>
-          </div>
-
-          <div class="item">
-            <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png" >
-            <div class="reliefText">
-              <h2>航空業外</h2>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png">
+              <div class="reliefText">
+                <h2>
+                  客運業
+                </h2>
                 假的假的假的內容～～～先衝字數排版用
                 經濟部針對營業額衰退逾五成的「內需艱困產業」共有三項直接紓困方案，包括四成薪資補貼、上限兩萬元，補助期間為四到六月；以及每位正職員工一萬元的一次性補貼；加上水電減免七折，水費上限兩萬、電費上限三十萬元。
                 據了解，經濟部等行政單位在清明連假期間就啟動相關子法及細則研擬，目前已接近收尾階段，預計若本週特別預算三讀後即可公告、月底正式實施。
                 官員透露，雖第二波特別預算經費調撥尚須作業時間，但經濟部已盤點近七十億元可立即運用，以上述方案為例，只要業者申請、或水電費減免符合資格者，紓困經費五月就可進帳。
                 官員表示，目前大型餐飲業營收幾乎都衰退超過五成，包括中餐館、酒樓、婚宴會館及部分大型連鎖餐飲等；大型零售業如百貨商場等，也有至少半數業者需要紓困。因不少業者目前仍支持不減班、不裁員，這些業者均符合艱困產業紓困條件。
                 若以一家正職二十名員工的中型餐飲業計算，可一次性獲得約六十餘萬元挹注；包括四成薪資補貼每人約一．六萬到二萬元，以及每人一萬元的一次性補貼，還有水電減免約二到三萬元。
+              </div>
+
+            </div>
+
+            <div class="item">
+              <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png">
+              <div class="reliefText">
+                <h2>餐飲業</h2>
+                假的假的假的內容～～～先衝字數排版用
+                經濟部針對營業額衰退逾五成的「內需艱困產業」共有三項直接紓困方案，包括四成薪資補貼、上限兩萬元，補助期間為四到六月；以及每位正職員工一萬元的一次性補貼；加上水電減免七折，水費上限兩萬、電費上限三十萬元。
+                據了解，經濟部等行政單位在清明連假期間就啟動相關子法及細則研擬，目前已接近收尾階段，預計若本週特別預算三讀後即可公告、月底正式實施。
+                官員透露，雖第二波特別預算經費調撥尚須作業時間，但經濟部已盤點近七十億元可立即運用，以上述方案為例，只要業者申請、或水電費減免符合資格者，紓困經費五月就可進帳。
+                官員表示，目前大型餐飲業營收幾乎都衰退超過五成，包括中餐館、酒樓、婚宴會館及部分大型連鎖餐飲等；大型零售業如百貨商場等，也有至少半數業者需要紓困。因不少業者目前仍支持不減班、不裁員，這些業者均符合艱困產業紓困條件。
+                若以一家正職二十名員工的中型餐飲業計算，可一次性獲得約六十餘萬元挹注；包括四成薪資補貼每人約一．六萬到二萬元，以及每人一萬元的一次性補貼，還有水電減免約二到三萬元。
+              </div>
+            </div>
+
+            <div class="item">
+              <img src="https://i.pinimg.com/originals/54/88/22/5488226cb39726e0ddd1df327d4fe918.png">
+              <div class="reliefText">
+                <h2>航空業外</h2>
+                假的假的假的內容～～～先衝字數排版用
+                經濟部針對營業額衰退逾五成的「內需艱困產業」共有三項直接紓困方案，包括四成薪資補貼、上限兩萬元，補助期間為四到六月；以及每位正職員工一萬元的一次性補貼；加上水電減免七折，水費上限兩萬、電費上限三十萬元。
+                據了解，經濟部等行政單位在清明連假期間就啟動相關子法及細則研擬，目前已接近收尾階段，預計若本週特別預算三讀後即可公告、月底正式實施。
+                官員透露，雖第二波特別預算經費調撥尚須作業時間，但經濟部已盤點近七十億元可立即運用，以上述方案為例，只要業者申請、或水電費減免符合資格者，紓困經費五月就可進帳。
+                官員表示，目前大型餐飲業營收幾乎都衰退超過五成，包括中餐館、酒樓、婚宴會館及部分大型連鎖餐飲等；大型零售業如百貨商場等，也有至少半數業者需要紓困。因不少業者目前仍支持不減班、不裁員，這些業者均符合艱困產業紓困條件。
+                若以一家正職二十名員工的中型餐飲業計算，可一次性獲得約六十餘萬元挹注；包括四成薪資補貼每人約一．六萬到二萬元，以及每人一萬元的一次性補貼，還有水電減免約二到三萬元。
+              </div>
             </div>
           </div>
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
     </div>
-    <br>
-    <br>
-    <p class="article-text block-horizontal-center width">
-      除了空服員、地勤人員之外，機場周邊相關產業從業人員同樣也受疫情影響。周聖凱舉例，像是製作飛機餐、清洗飛機上毛巾、棉被的人員，在航空公司減班及政府禁航的管制下，同樣面臨收入降低的狀況。周聖凱提到，在機場周圍工作的相關人員將近20萬，然而，相較於空服員，這群人的處境卻較難被看見，「他們跟製造業的勞動人員比較類似，大多是在工廠工作，所以比較少被關注到。」
-    </p>
-    <p class="article-text block-horizontal-center width">
-      緊隨「海嘯第一排」而受困的行業，非旅遊業莫屬。在疫情底下，全球人口流動大量減少，旅遊業因而遭到嚴重打擊；平日人山人海的旅遊景點、城市鬧區，如今只見零星的人潮。「（補助）一定是不夠的，我們營收少那麼多了怎麼可能補得回來。」卞傑民提及，現階段旅行社的營收趨近於零，任何開支都成了沉重的負擔。政府的紓困方案的確帶來幫助，例如為員工薪資提供約四成的補貼。另外，政府提供借貸服務，並為「出團」提供補貼方案。因送件眾多，審核速度相對緩慢，是否真能發揮紓困成效仍尚待觀察。
-    </p>
-    <p class="article-text block-horizontal-center width">
-      周邊產業如運輸業也難逃疫情影響，成為受困戶之一。政府也針對運輸業提供紓困方案，如對司機的補助、車貸貸款等。高先生表示，遊覽車界別較為特殊，非但不屬客運業，也不為觀光旅遊業，處於灰色地帶。「若真正要對遊覽車有補助的話，才會特別寫遊覽車。」遊覽車業者可申請的補助範圍相對狹窄，政府補助並無效用。而借貸需要繳交利息，且借用金額較小，也無實質效益。實際上，紓困方案可能反讓公司與司機起糾紛。高先生認為紓困政策若要做得徹底，需向從業人員了解實際狀況，否則難以對症下藥。他建議，政府可嘗試把燃油、燃料及牌照的稅款全面減免（目前為減半），也可考慮開放更多公共空間，或允許集會活動，增加人民外出意願，此舉可為運輸業帶來實際幫助。
-    </p>
-    <p class="article-text block-horizontal-center width">
-      「因為疫情對這次的影響很大，各行各業都有，政府這個美意對我們來講都是很大的幫助。」旅行社領隊黃子維進一步指出，相關產業從業人員都需有憂患意識以應對疫情帶來的衝擊。在人人自危的狀況下，政府的紓困政策的確為各界打下一支強心針，但如申請者資格認定、審核速度等細節內容還有改善的空間。政府與業界需保持緊密的合作，相關受影響產業也須自立自強，在危機中尋求生路。
-    </p>
-    <footer class="footer">
-      <br>
-      <p class="author" style="margin-top: 20px;">採訪編輯｜李權洲、楊家威、賴辰瑀、張珮慈、林琬蓉</p>
-      <p class="author">工程協力｜ＸＸＸ、ＸＸＸ、ＸＸＸ、ＸＸＸ、ＸＸＸ</p>
-      <p class="author">© 政治大學 新聞學系 / 資訊科學系</p>
-      <br>
-    </footer>
+    <div id="section6" class="section">
+      <p class="article-text block-horizontal-center width">
+        除了空服員、地勤人員之外，機場周邊相關產業從業人員同樣也受疫情影響。周聖凱舉例，像是製作飛機餐、清洗飛機上毛巾、棉被的人員，在航空公司減班及政府禁航的管制下，同樣面臨收入降低的狀況。周聖凱提到，在機場周圍工作的相關人員將近20萬，然而，相較於空服員，這群人的處境卻較難被看見，「他們跟製造業的勞動人員比較類似，大多是在工廠工作，所以比較少被關注到。」
+      </p>
+      <p class="article-text block-horizontal-center width">
+        緊隨「海嘯第一排」而受困的行業，非旅遊業莫屬。在疫情底下，全球人口流動大量減少，旅遊業因而遭到嚴重打擊；平日人山人海的旅遊景點、城市鬧區，如今只見零星的人潮。「（補助）一定是不夠的，我們營收少那麼多了怎麼可能補得回來。」卞傑民提及，現階段旅行社的營收趨近於零，任何開支都成了沉重的負擔。政府的紓困方案的確帶來幫助，例如為員工薪資提供約四成的補貼。另外，政府提供借貸服務，並為「出團」提供補貼方案。因送件眾多，審核速度相對緩慢，是否真能發揮紓困成效仍尚待觀察。
+      </p>
+      <p class="article-text block-horizontal-center width">
+        周邊產業如運輸業也難逃疫情影響，成為受困戶之一。政府也針對運輸業提供紓困方案，如對司機的補助、車貸貸款等。高先生表示，遊覽車界別較為特殊，非但不屬客運業，也不為觀光旅遊業，處於灰色地帶。「若真正要對遊覽車有補助的話，才會特別寫遊覽車。」遊覽車業者可申請的補助範圍相對狹窄，政府補助並無效用。而借貸需要繳交利息，且借用金額較小，也無實質效益。實際上，紓困方案可能反讓公司與司機起糾紛。高先生認為紓困政策若要做得徹底，需向從業人員了解實際狀況，否則難以對症下藥。他建議，政府可嘗試把燃油、燃料及牌照的稅款全面減免（目前為減半），也可考慮開放更多公共空間，或允許集會活動，增加人民外出意願，此舉可為運輸業帶來實際幫助。
+      </p>
+      <p class="article-text block-horizontal-center width">
+        「因為疫情對這次的影響很大，各行各業都有，政府這個美意對我們來講都是很大的幫助。」旅行社領隊黃子維進一步指出，相關產業從業人員都需有憂患意識以應對疫情帶來的衝擊。在人人自危的狀況下，政府的紓困政策的確為各界打下一支強心針，但如申請者資格認定、審核速度等細節內容還有改善的空間。政府與業界需保持緊密的合作，相關受影響產業也須自立自強，在危機中尋求生路。
+      </p>
+      <footer class="footer">
+        <br>
+        <p class="author" style="margin-top: 20px;">採訪編輯｜李權洲、楊家威、賴辰瑀、張珮慈、林琬蓉</p>
+        <p class="author">工程協力｜ＸＸＸ、ＸＸＸ、ＸＸＸ、ＸＸＸ、ＸＸＸ</p>
+        <p class="author">© 政治大學 新聞學系 / 資訊科學系</p>
+        <br>
+      </footer>
+    </div>
   </div>
+  <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
   <script src="js/data.js"></script>
-  <script src="js/index.js">
-
-  </script>
+  <script src="js/index.js"></script>
+  <script src="js/animate.js"></script>
 </body>
 
 </html>
