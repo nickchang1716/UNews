@@ -13,8 +13,9 @@
 
   .img-size {
     width: 900px;
-    height: 400px;
+    height: auto;
     background-color: cadetblue;
+    text-align: center;
   }
 }
 
@@ -35,6 +36,7 @@
     width: calc(900/1024*100%);
     height: 400px;
     background-color: cadetblue;
+    text-align: center;
   }
 }
 
@@ -48,8 +50,7 @@ body {
 }
 
 .block-horizontal-center {
-  margin-right: auto;
-  margin-left: auto;
+  margin: 50px auto 50px auto;
 }
 
 .main-title {
@@ -68,6 +69,45 @@ body {
   text-align: center;
   font-size: 30px;
   color: #ffffff;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.btn{
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 9px 22px;
+  border: 4px solid #bbbbbb;
+  border-radius: 0px;
+  background: #ffffff;
+  font: normal normal normal 21px arial;
+  color: #111111;
+  text-decoration: none;
+}
+
+.btn:hover{
+    border: 4px solid #999999;
+    color: #111111;
+    text-decoration: none;
+    background-color: gray; 
+}
+
+.active{
+  border: 4px solid #999999;
+    color: #111111;
+    text-decoration: none;
+    background-color: gray; 
 }
 
 .footer {

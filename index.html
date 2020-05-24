@@ -9,6 +9,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
   <title>疫症下的「航」業困境</title>
 </head>
 
@@ -34,7 +35,18 @@
     <p class="article-text block-horizontal-center width">
       由於航空公司大幅減班、客運班機大減，民眾擔憂染疫也盡量避免非必要的外出與旅行，導致旅行需求急劇減少。而為防堵疫情擴散，交通部觀光局頒布禁令，禁止旅行社出團及接待國外旅行團直至五月底，解禁將視疫情發展而定，旅遊觀光產業首當其衝，無法接、出團致使旅行社頓失收入。鳳凰旅遊總經理卞傑民說：「大家（旅行社）面臨的狀況就是一樣的，營收幾乎都是趨近於零。」
     </p>
-    <div class="block-horizontal-center img-size">這裡放營收下降圖表</div>
+    <div class="block-horizontal-center img-size">
+      <h2 >旅行社12月至4月每月營收變化圖</h2>
+      <div id="btnDiv" >
+        <button class="btn active" onclick="update(data1)">雄獅</button>
+        <button class="btn" onclick="update(data2)">鳳凰</button>
+        <button class="btn" onclick="update(data3)">五福</button>
+        <button class="btn" onclick="update(data4)">山富</button>
+        <button class="btn" onclick="update(data5)">燦星</button>
+      </div>
+      <div id="travelAgency">
+      </div>
+    </div>
     <p class="article-text block-horizontal-center width">
       卞傑民提到，鳳凰旅遊原先一年出團的數量約為1500團，自一月疫情爆發至今，受影響的團數約達5、600團。因世界各國實施邊境管制及旅遊限制，「根本連出去的機會都沒有，那已經無關努不努力了，而是你根本沒有機會努力。」卞傑民說。
     </p>
@@ -115,6 +127,7 @@
       <br>
     </footer>
   </div>
+  <script src="js/data.js"></script>
   <script src="js/index.js">
 
   </script>
