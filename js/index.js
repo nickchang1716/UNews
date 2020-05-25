@@ -493,16 +493,22 @@ function update(data) {
     .attr('fill', '#222')
     .attr('stroke', '#222')
     .attr('font-size', 20)
-    .text(function(d) {
-      return formatNumber(d.value.toString()) + ' 元';
-    })
     .attr("x", function(d) {
       return x(d.rate) + x.bandwidth() / 2;
     })
     .attr("y", function(d) {
       return y(0);
     })
-    .attr("display", "none");
+    .attr("display", "none")
+    .text(function(d) {
+      return formatNumber("0") + '元';
+    })
+    .text(function(d) {
+      return formatNumber("0") + '元';
+    })
+    .transition()
+    .duration(1000)
+    ;
 
   //繪製bar
   slice.selectAll("rect")
@@ -545,6 +551,12 @@ function update(data) {
     .attr("display", "")
     .attr("y", function(d) {
       return y(d.value) - 10;
+    })
+    .tween("string", (d)=>{
+      let i = d3.interpolateRound(0, d.value);
+      return function(t){
+        this.textContent = formatNumber(i(t).toString()) + "元";
+      }
     });
 }
 
