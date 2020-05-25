@@ -1,8 +1,8 @@
 window.onload = main;
 
 function main() {
-    var width = window.innerWidth,
-        height = window.innerHeight;
+    var width = window.innerWidth * 0.88,
+        height = window.innerHeight * 0.88;
 
     var svg = d3.select("svg");
 
@@ -30,6 +30,7 @@ function main() {
     var rotation_btn;
     var change_icon_btn;
     var departure_btn;
+    var view_idx = 0;
 
     var files = [
         "https://unpkg.com/world-atlas@1/world/110m.json",
@@ -106,7 +107,7 @@ function main() {
             points = links_components[1];
 
         enable_scroll_effect(globe_bg, links, points);
-        rotation_btn = new Rotation_Btn();
+        rotation_btn = new Rotation_Btn(globe_bg);
         change_icon_btn = new Change_Icon_Btn(
             links_components,
             titlebox,
@@ -191,11 +192,8 @@ function main() {
 
     function create_titlebox(title) {
         let titlebox = d3
-            .select("body")
-            .append("div")
-            .style("position", "fixed")
-            .style("right", 0)
-            .style("top", 0)
+            .select("#infobox")
+            .style("position", "absolute")
             .style("margin", "1em")
             .style("padding", ".5em")
             .style("background-color", "#ddd")
@@ -214,7 +212,7 @@ function main() {
         titlebox
             .append("div")
             .attr("class", "title")
-            .style("font-size", "1.5em")
+            .style("font-size", "1.3em")
             .style("text-align", "center")
             .style("color", "#222c")
             .html(title);
@@ -350,12 +348,22 @@ function main() {
     }
 
     function show_info(flight_data, infobox) {
-        infobox.style("display", "block");
-        infobox.select(".title").text(flight_data["國家"]);
+        // infobox.style("display", "block");
+        // infobox.select(".title").text(flight_data["國家"]);
 
         // TODO: Modifiy below code.
-        console.log(flight_data["name"]);
-        console.log(departure_btn.departure);
+        if (departure_btn.departure) {
+            d3.select("#status").property("value", "departure");
+        } else {
+            d3.select("#status").property("value", "arrival");
+        }
+
+        d3.select("#country")
+            .property("value", flight_data["name"])
+            .each(() => {
+                selectCountry();
+            });
+
         infobox.select("svg");
     }
 
@@ -584,76 +592,73 @@ function main() {
             })
         ).call(
             d3.zoom().on("zoom", () => {
-                var curr_rotate = projection.rotate();
-
                 if (d3.event.transform.k > ZoomRange[0]) {
                     d3.event.transform.k = ZoomRange[0];
-                    var next_rotate = [-TaiwanCoords[0], -TaiwanCoords[1]];
-                    projection.scale(InitialScale);
-                    globe_bg.attr("r", projection.scale());
-                    var flat = true;
+                    switch_view(0, globe_bg);
                 } else if (d3.event.transform.k < ZoomRange[1]) {
                     d3.event.transform.k = ZoomRange[1];
-                    var next_rotate = [
-                        -TaiwanCoords[0] - 70,
-                        -TaiwanCoords[1] - 20,
-                    ];
-                    projection.scale(InitialScale * 0.7);
-                    globe_bg.attr("r", projection.scale());
-                    var flat = false;
-                }
-
-                if (next_rotate != curr_rotate) {
-                    svg.selectAll("path").attr("d", function (d) {
-                        // don't apply transition to links and points
-                        if (d3.select(this).attr("class") != "link") {
-                            d3.select(this)
-                                .transition()
-                                .duration(300)
-                                .attrTween("d", function (d) {
-                                    let r = d3.interpolate(
-                                        curr_rotate,
-                                        next_rotate
-                                    );
-
-                                    return function (t) {
-                                        projection.rotate(r(t));
-
-                                        path = d3
-                                            .geoPath()
-                                            .projection(projection);
-                                        let pathD = path(d);
-                                        return pathD == null ? "" : pathD;
-                                    };
-                                });
-                        } else {
-                            projection.rotate(next_rotate);
-                            path = d3.geoPath().projection(projection);
-                            let curr_link = d3.select(this);
-                            setTimeout(function () {
-                                curr_link.attr("d", path);
-                            }, 300);
-                        }
-                    });
+                    switch_view(1, globe_bg);
                 }
             })
         );
     }
 
-    function Rotation_Btn() {
-        this.enable_rotation = false;
+    function switch_view(idx, globe_bg) {
+        var curr_rotate = projection.rotate();
 
-        let rotation_timer = d3.interval(rotate, 50);
-        rotation_timer.stop();
+        if (idx == 0) {
+            var next_rotate = [-TaiwanCoords[0], -TaiwanCoords[1]];
+            projection.scale(InitialScale);
+            globe_bg.attr("r", projection.scale());
+            var flat = true;
+        } else if (idx == 1) {
+            var next_rotate = [-TaiwanCoords[0] - 70, -TaiwanCoords[1] - 20];
+            projection.scale(InitialScale * 0.7);
+            globe_bg.attr("r", projection.scale());
+            var flat = false;
+        }
+
+        if (next_rotate != curr_rotate) {
+            svg.selectAll("path").attr("d", function (d) {
+                // don't apply transition to links and points
+                if (d3.select(this).attr("class") != "link") {
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attrTween("d", function (d) {
+                            let r = d3.interpolate(curr_rotate, next_rotate);
+
+                            return function (t) {
+                                projection.rotate(r(t));
+
+                                path = d3.geoPath().projection(projection);
+                                let pathD = path(d);
+                                return pathD == null ? "" : pathD;
+                            };
+                        });
+                } else {
+                    projection.rotate(next_rotate);
+                    path = d3.geoPath().projection(projection);
+                    let curr_link = d3.select(this);
+                    setTimeout(function () {
+                        curr_link.attr("d", path);
+                    }, 200);
+                }
+            });
+        }
+    }
+
+    function Rotation_Btn(globe_bg) {
+        this.enable_rotation = false;
 
         let rotation_btn = d3.select("#rotation-btn").on("click", function () {
             if (this.enable_rotate) {
                 this.enable_rotate = false;
-                rotation_timer.stop();
+                switch_view(0, globe_bg);
                 d3.select(this).style("background", "none");
             } else {
                 this.enable_rotate = true;
-                rotation_timer.restart(rotate);
+                switch_view(1, globe_bg);
                 d3.select(this).style("background", "#7777");
             }
         });
