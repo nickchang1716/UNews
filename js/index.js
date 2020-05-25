@@ -439,6 +439,7 @@ function update(data) {
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height_agency + ")")
     .call(xAxis_agency)
+    .attr("stroke-width", 0.8)
     .append("text")
     .attr("transform", "translate(" + width_agency + "," + margin_agency.right + ")")
     .attr('fill', '#000')
