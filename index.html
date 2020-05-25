@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="img/plane.png" />
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -36,7 +38,22 @@
         面對疫情影響，身處第一線的空服員因須接觸不同旅客，也成為高風險群。桃園市空服員職業工會秘書長周聖凱表示，相較於機師和地勤人員，須時常面對旅客的空服員受感染機會也更高。除染疫風險外，空服員薪資也受影響。周聖凱說明，空服員和機師的薪資基本上依據飛行時數計算，大砍航班飛行時數一定會下降，「航班少空服員和機師的薪水就會掉比較快，因此他們在薪水上的壓力也比較大。」
       </p>
       <!-- 地球圖 -->
-      <div class="block-horizontal-center img-size">這裡放航班出境圖表(地球)</div>
+      <div class="block-horizontal-center img-size">
+        <svg id="mapSvg"></svg>
+        <nav id="home-nav">
+          <ul>
+            <li>
+              <i class="fas fa-sync icons" id="rotation-btn"></i>
+            </li>
+            <li>
+              <i class="fas fa-plane-departure icons" id="departure-btn"></i>
+            </li>
+            <li>
+              <i class="fas fa-walking icons" id="change-icon-btn"></i>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <!-- 出境、入境折線長條圖 -->
       <div class="block-horizontal-center img-size">
         <div class="airport-graph">
@@ -125,7 +142,7 @@
     </div>
     <div id="section5" class="section">
       <div class="block-horizontal-center img-size" style="position:relative;">
-        <div id="myCarousel" class="carousel slide slideContents">
+        <div id="myCarousel" class="carousel slide">
           <!-- Indicators -->
           <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -203,7 +220,7 @@
       <footer class="footer">
         <br>
         <p class="author" style="margin-top: 20px;">採訪編輯｜李權洲、楊家威、賴辰瑀、張珮慈、林琬蓉</p>
-        <p class="author">工程協力｜ＸＸＸ、ＸＸＸ、ＸＸＸ、ＸＸＸ、ＸＸＸ</p>
+        <p class="author">工程協力｜張益菕、范鈺鑫、謝宜庭、ＸＸＸ、ＸＸＸ</p>
         <p class="author">© 政治大學 新聞學系 / 資訊科學系</p>
         <br>
       </footer>
@@ -211,6 +228,10 @@
   </div>
   <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+  <script src="js/script.js"></script>
   <script src="js/data.js"></script>
   <script src="js/index.js"></script>
   <script src="js/animate.js"></script>

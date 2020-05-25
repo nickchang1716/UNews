@@ -1,0 +1,52 @@
+@import url("https://use.fontawesome.com/releases/v5.5.0/css/all.css");
+@import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+
+body {
+  /* margin: 0;
+    background-color: #cae8d5;
+    color: #333;
+    overflow: hidden;
+    font-family: "Noto Sans TC", sans-serif; */
+}
+
+#mapSvg {
+  width: 100%;
+  height: 400px;
+}
+
+#home-nav {
+  position: fixed;
+  display: block;
+  user-select: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  top: 0;
+  left: 12px;
+  font-size: 1.3em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  z-index: 5;
+}
+
+#home-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#home-nav li {
+  display: flex;
+  float: left;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-nav .icons {
+  padding: 0.7em;
+  margin: 0;
+  width: 1em;
+  text-align: center;
+  cursor: pointer;
+}
+
+#home-nav .icons:hover {
+  background: #7777 !important;
+}
