@@ -110,12 +110,16 @@ body {
   background-color: gray;
 }
 
+.slideContents {
+  padding: 30px;
+}
+
 .item {
-  margin: 30px;
+  /* margin: 30px; */
 }
 
 .item img {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   width: 30%;
   float: left;
 }
