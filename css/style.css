@@ -48,3 +48,7 @@ body {
 #home-nav .icons:hover {
     background: #7777 !important;
 }
+
+#infobox {
+    right: 11vw;
+}

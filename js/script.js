@@ -7,8 +7,8 @@ function main() {
     var svg = d3.select("svg");
 
     const TaiwanCoords = [121.5654, 25.033];
-    const translation = [width / 2, height / 3];
-    var projection = three_d_map(width / 1.8, translation, TaiwanCoords);
+    const translation = [width / 3, height / 3.5];
+    var projection = three_d_map(width / 2.5, translation, TaiwanCoords);
     var path = d3.geoPath().projection(projection);
 
     const InitialScale = projection.scale();
@@ -191,11 +191,8 @@ function main() {
 
     function create_titlebox(title) {
         let titlebox = d3
-            .select("body")
-            .append("div")
-            .style("position", "fixed")
-            .style("right", 0)
-            .style("top", 0)
+            .select("#infobox")
+            .style("position", "absolute")
             .style("margin", "1em")
             .style("padding", ".5em")
             .style("background-color", "#ddd")
@@ -214,7 +211,7 @@ function main() {
         titlebox
             .append("div")
             .attr("class", "title")
-            .style("font-size", "1.5em")
+            .style("font-size", "1.3em")
             .style("text-align", "center")
             .style("color", "#222c")
             .html(title);
