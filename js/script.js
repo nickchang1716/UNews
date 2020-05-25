@@ -1,8 +1,8 @@
 window.onload = main;
 
 function main() {
-    var width = window.innerWidth,
-        height = window.innerHeight;
+    var width = window.innerWidth * 0.88,
+        height = window.innerHeight * 0.88;
 
     var svg = d3.select("svg");
 
@@ -348,12 +348,22 @@ function main() {
     }
 
     function show_info(flight_data, infobox) {
-        infobox.style("display", "block");
-        infobox.select(".title").text(flight_data["國家"]);
+        // infobox.style("display", "block");
+        // infobox.select(".title").text(flight_data["國家"]);
 
         // TODO: Modifiy below code.
-        console.log(flight_data["name"]);
-        console.log(departure_btn.departure);
+        if (departure_btn.departure) {
+            d3.select("#status").property("value", "departure");
+        } else {
+            d3.select("#status").property("value", "arrival");
+        }
+
+        d3.select("#country")
+            .property("value", flight_data["name"])
+            .each(() => {
+                drawArrival(arrivalData[flight_data["name"]]);
+            });
+
         infobox.select("svg");
     }
 
@@ -641,30 +651,24 @@ function main() {
     function Rotation_Btn(globe_bg) {
         this.enable_rotation = false;
 
-        // let rotation_timer = d3.interval(rotate, 2000);
-        // rotation_timer.stop();
-
         let rotation_btn = d3.select("#rotation-btn").on("click", function () {
             if (this.enable_rotate) {
                 this.enable_rotate = false;
-                rotation_timer.stop();
+                switch_view(0, globe_bg);
                 d3.select(this).style("background", "none");
             } else {
                 this.enable_rotate = true;
-                rotation_timer = d3.interval(rotate, 6000);
+                switch_view(1, globe_bg);
                 d3.select(this).style("background", "#7777");
             }
         });
 
         function rotate(elapsed) {
-            // const rotate = projection.rotate();
-            // const k = Sensitivity / projection.scale();
-            // projection.rotate([rotate[0] - k, rotate[1]]);
-            // path = d3.geoPath().projection(projection);
-            // svg.selectAll("path").attr("d", path);
-            if (view_idx == 0) view_idx = 1;
-            else if (view_idx == 1) view_idx = 0;
-            switch_view(view_idx, globe_bg);
+            const rotate = projection.rotate();
+            const k = Sensitivity / projection.scale();
+            projection.rotate([rotate[0] - k, rotate[1]]);
+            path = d3.geoPath().projection(projection);
+            svg.selectAll("path").attr("d", path);
         }
 
         return rotation_btn;
