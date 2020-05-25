@@ -361,7 +361,7 @@ function main() {
         d3.select("#country")
             .property("value", flight_data["name"])
             .each(() => {
-                drawArrival(arrivalData[flight_data["name"]]);
+                selectCountry();
             });
 
         infobox.select("svg");
