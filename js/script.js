@@ -1,8 +1,9 @@
 window.onload = main;
 
 function main() {
-    var width = window.innerWidth * 0.88,
-        height = window.innerHeight * 0.88;
+    let rect = d3.select("#mapSvg").node().getBoundingClientRect();
+    var width = rect.width,
+        height = rect.height;
 
     var svg = d3.select("svg");
 
