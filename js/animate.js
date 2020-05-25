@@ -29,7 +29,6 @@ let ani = (section) => {
 $(document).scroll(function() {
   let windowY = $(window).scrollTop();
   if (windowY > s0 + s1 - viewheight * 0.9) {
-    console.log("ani")
     ani($("#section2"));
   }
   if (windowY > s0 + s1 + s2 - viewheight * 0.9) {
