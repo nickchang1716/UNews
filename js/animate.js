@@ -20,10 +20,10 @@ console.log(viewheight);
 // console.log(s6);
 //$("#section1").fadeIn(1500);
 let ani = (section) => {
-  section.stop().animate({
+  section.animate({
     "margin-top": "50px",
     "opacity": "1"
-  }, 800);
+  }, 1200);
 }
 
 $(document).scroll(function() {
