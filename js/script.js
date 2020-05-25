@@ -7,7 +7,7 @@ function main() {
     var svg = d3.select("svg");
 
     const TaiwanCoords = [121.5654, 25.033];
-    const translation = [width / 2, height / 2];
+    const translation = [width / 2, height / 3];
     var projection = three_d_map(width / 1.8, translation, TaiwanCoords);
     var path = d3.geoPath().projection(projection);
 
