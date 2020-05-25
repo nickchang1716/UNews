@@ -72,7 +72,7 @@ function drawArrival(data) {
   // x axis title
   axis.append('text')
     .attr('text-anchor', 'middle')
-    .attr('x', width_entry_exit / 2)
+    .attr('x', (width_entry_exit - margin_entry_exit.right + margin_entry_exit.left) / 2)
     .attr('y', height_entry_exit - 5)
     .text('月份');
   // y axis title
@@ -202,7 +202,7 @@ function drawDeparture(data) {
     .call(xAxis);
   // y axis left
   axis.append('g')
-    .attr("transform", `translate(${margin_entry_exit.left-0.5}, 0)`)
+    .attr("transform", `translate(${margin_entry_exit.left - 0.5}, 0)`)
     .call(y1Axis)
     .selectAll('text')
     .style('fill', black)
@@ -219,7 +219,7 @@ function drawDeparture(data) {
   // x axis title
   axis.append('text')
     .attr('text-anchor', 'middle')
-    .attr('x', width_entry_exit / 2)
+    .attr('x', (width_entry_exit - margin_entry_exit.right + margin_entry_exit.left) / 2)
     .attr('y', height_entry_exit - 5)
     .text('月份');
   // y axis left title
@@ -435,7 +435,7 @@ function formatNumber(number) {
 }
 
 //更新data，繪製bar chart
-function update(data,color) {
+function update(data, color) {
   svg.selectAll("rect").remove();
   svg.selectAll("text").remove();
   svg.selectAll(".y").remove();
@@ -507,8 +507,7 @@ function update(data,color) {
       return formatNumber("0") + '元';
     })
     .transition()
-    .duration(1000)
-    ;
+    .duration(1000);
 
   //繪製bar
   slice.selectAll("rect")
@@ -550,14 +549,14 @@ function update(data,color) {
     .attr("y", function(d) {
       return y(d.value) - 10;
     })
-    .tween("string", (d)=>{
+    .tween("string", (d) => {
       let i = d3.interpolateRound(0, d.value);
-      return function(t){
+      return function(t) {
         this.textContent = formatNumber(i(t).toString()) + "元";
       }
     });
 }
 
 //載入時直接匯入data1資料
-update(data1,'#DD84A1')
+update(data1, '#DD84A1')
 //旅行社營收圖js結束
