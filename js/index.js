@@ -418,7 +418,7 @@ function formatNumber(number) {
 }
 
 //更新data，繪製bar chart
-function update(data) {
+function update(data,color) {
   svg.selectAll("rect").remove();
   svg.selectAll("text").remove();
   svg.selectAll(".y").remove();
@@ -503,9 +503,7 @@ function update(data) {
     .attr("x", function(d) {
       return x(d.rate) + x.bandwidth() / 4;
     })
-    .style("fill", function(d) {
-      return color(d.rate)
-    })
+    .style("fill", color)
     .attr("y", function(d) {
       return y(0);
     })
@@ -544,5 +542,5 @@ function update(data) {
 }
 
 //載入時直接匯入data1資料
-update(data1)
+update(data1,'#DD84A1')
 //旅行社營收圖js結束
