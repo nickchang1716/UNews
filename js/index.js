@@ -3,7 +3,7 @@
 //以下為出境、入境圖
 const margin_entry_exit = {
   left: 80,
-  right: 80,
+  right: 20,
   top: 60,
   bottom: 60
 };
@@ -174,16 +174,16 @@ function drawDeparture(data) {
   let xScale = d3.scaleBand()
     .domain([12, 1, 2, 3])
     .range([margin_entry_exit.left, width_entry_exit - margin_entry_exit.right])
-    .padding(0.3);
+    .padding(0);
 
   let y1Scale = d3.scaleLinear()
     .domain([0, d3.max(data, d => d.passenger)])
     .range([height_entry_exit - margin_entry_exit.bottom, margin_entry_exit.top]);
-
-  let y2Scale = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.plane)])
-    .range([height_entry_exit - margin_entry_exit.bottom, margin_entry_exit.top]);
-
+  /*
+    let y2Scale = d3.scaleLinear()
+      .domain([0, d3.max(data, d => d.plane)])
+      .range([height_entry_exit - margin_entry_exit.bottom, margin_entry_exit.top]);
+  */
   let xAxis = d3.axisBottom(xScale)
     .tickFormat(d => d + " 月")
     .tickPadding(padding);
@@ -191,10 +191,10 @@ function drawDeparture(data) {
   let y1Axis = d3.axisLeft(y1Scale)
     .tickFormat(d => formatComma(d))
     .tickPadding(padding);
-
-  let y2Axis = d3.axisRight(y2Scale)
-    .tickPadding(padding);
-
+  /*
+    let y2Axis = d3.axisRight(y2Scale)
+      .tickPadding(padding);
+  */
   let axis = chart.append('g').attr('class', 'axis');
   // x axis
   axis.append('g')
@@ -202,18 +202,20 @@ function drawDeparture(data) {
     .call(xAxis);
   // y axis left
   axis.append('g')
-    .attr("transform", `translate(${margin_entry_exit.left}, 0)`)
+    .attr("transform", `translate(${margin_entry_exit.left-0.5}, 0)`)
     .call(y1Axis)
     .selectAll('text')
     .style('fill', black)
     .style('font-weight', 'bold');
-  // y axis right
-  axis.append('g')
-    .attr('transform', `translate(${width_entry_exit - margin_entry_exit.right}, 0)`)
-    .call(y2Axis)
-    .selectAll('text')
-    .style('fill', levelColors[0])
-    .style('font-weight', 'bold');
+  /*
+    // y axis right
+    axis.append('g')
+      .attr('transform', `translate(${width_entry_exit - margin_entry_exit.right}, 0)`)
+      .call(y2Axis)
+      .selectAll('text')
+      .style('fill', levelColors[0])
+      .style('font-weight', 'bold');
+  */
   // x axis title
   axis.append('text')
     .attr('text-anchor', 'middle')
@@ -226,43 +228,57 @@ function drawDeparture(data) {
     .attr('x', margin_entry_exit.left - padding)
     .attr('y', margin_entry_exit.top - 20)
     .text('載客人數');
-  // y axis right title
-  axis.append('text')
-    .attr('text-anchor', 'start')
-    .attr('x', width_entry_exit - margin_entry_exit.right + padding)
-    .attr('y', margin_entry_exit.top - 20)
-    .text('飛機架數');
-
+  /*
+    // y axis right title
+    axis.append('text')
+      .attr('text-anchor', 'start')
+      .attr('x', width_entry_exit - margin_entry_exit.right + padding)
+      .attr('y', margin_entry_exit.top - 20)
+      .text('飛機架數');
+  */
   axis.selectAll('text')
     .style('font-size', 14);
 
   // bar chart
   let barChart = chart.append('g').attr('class', 'bar-chart');
-  // draw bar tooltip
-  let bar_tooltip = d3.tip()
-    .attr('class', 'd3-tip bar-tip')
-    .offset([-10, 0])
-    .html(d => `<div>飛機架數(${d.month}月)</div><div>${formatComma(d.plane)} 架</div>`);
-  barChart.call(bar_tooltip);
-  // draw bar
   let bar = barChart.selectAll('.bar').data(data);
   bar.enter()
     .append('rect')
     .attr('class', 'bar')
     .attr('fill', d => sortLevel(d))
     .attr('x', d => xScale(d.month))
-    .attr('y', d => y2Scale(0))
     .attr('width', xScale.bandwidth())
-    .attr('height', 0)
-    .on("mouseover", bar_tooltip.show)
-    .on("mouseout", bar_tooltip.hide)
-    .transition()
-    .duration(375)
-    .delay((d, i) => i * 375)
-    .ease(d3.easeLinear)
-    .attr('y', d => y2Scale(d.plane))
-    .attr('height', d => y2Scale(0) - y2Scale(d.plane));
-
+    .attr('y', d => margin_entry_exit.top)
+    .attr('height', d => height_entry_exit - margin_entry_exit.top - margin_entry_exit.bottom)
+    .attr('opacity', 0.6);
+  /*
+    // bar chart
+    let barChart = chart.append('g').attr('class', 'bar-chart');
+    // draw bar tooltip
+    let bar_tooltip = d3.tip()
+      .attr('class', 'd3-tip bar-tip')
+      .offset([-10, 0])
+      .html(d => `<div>飛機架數(${d.month}月)</div><div>${formatComma(d.plane)} 架</div>`);
+    barChart.call(bar_tooltip);
+    // draw bar
+    let bar = barChart.selectAll('.bar').data(data);
+    bar.enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('fill', d => sortLevel(d))
+      .attr('x', d => xScale(d.month))
+      .attr('y', d => y2Scale(0))
+      .attr('width', xScale.bandwidth())
+      .attr('height', 0)
+      .on("mouseover", bar_tooltip.show)
+      .on("mouseout", bar_tooltip.hide)
+      .transition()
+      .duration(375)
+      .delay((d, i) => i * 375)
+      .ease(d3.easeLinear)
+      .attr('y', d => y2Scale(d.plane))
+      .attr('height', d => y2Scale(0) - y2Scale(d.plane));
+  */
   // line chart
   let lineChart = chart.append('g').attr('class', 'line-chart');
   // draw line tooltip
@@ -331,7 +347,8 @@ function drawDeparture(data) {
       .attr('y', 0)
       .attr('width', rectSize)
       .attr('height', rectSize)
-      .style('fill', levelColors[i]);
+      .style('fill', levelColors[i])
+      .attr('opacity', 0.6);
     levelLabel.append('text')
       .attr('x', i * 80 + rectSize + 5)
       .attr('y', rectSize - 5)
