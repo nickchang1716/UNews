@@ -36,19 +36,19 @@ let ani = (section) => {
 
 $(document).scroll(function() {
   let windowY = $(window).scrollTop();
-  if (windowY > s0 - viewheight * 0.6) {
+  if (windowY > s0 - viewheight * 0.8) {
     ani($("#section1"));
   }
-  if (windowY > s0 + s1 - viewheight * 0.6) {
+  if (windowY > s0 + s1 - viewheight * 0.8) {
     ani($("#section2"));
   }
-  if (windowY > s0 + s1 + s2 - viewheight * 0.6) {
+  if (windowY > s0 + s1 + s2 - viewheight * 0.8) {
     ani($("#section3"));
   }
-  if (windowY > s0 + s1 + s2 + s3 - viewheight * 0.6) {
+  if (windowY > s0 + s1 + s2 + s3 - viewheight * 0.8) {
     ani($("#section4"));
   }
-  if (windowY > s0 + s1 + s2 + s3 + s4 - viewheight * 0.6) {
+  if (windowY > s0 + s1 + s2 + s3 + s4 - viewheight * 0.8) {
     ani($("#section5"));
   }
 })
