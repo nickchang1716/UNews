@@ -1,6 +1,6 @@
 $(document).ready(() => {
   $('html,body').animate({
-    scrollTop: 0
+    "scrollTop": 100
   }, 'slow');
 });
 $(".video").on("click", () => {
@@ -19,7 +19,7 @@ let s3 = $("#section3").height();
 let s4 = $("#section4").height();
 let s5 = $("#section5").height();
 let viewheight = screen.height;
-console.log(viewheight);
+//console.log(viewheight);
 // console.log(s1);
 // console.log(s2);
 // console.log(s3);

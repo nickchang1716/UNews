@@ -9,13 +9,6 @@ body {
     font-family: "Noto Sans TC", sans-serif; */
 }
 
-.video {
-  background-color: black;
-  width: 100vw;
-  text-align: center;
-  margin-top: -3vh;
-}
-
 #mapSvg {
   width: 100%;
   height: 400px;
