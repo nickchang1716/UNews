@@ -125,6 +125,7 @@ function main() {
             change_icon_btn
         );
 
+        change_icon_btn.change_status(true);
         d3.select("#change-icon-btn").on("click", function () {
             change_icon_btn.change_status();
         });
@@ -703,7 +704,7 @@ function main() {
                     "fas fa-walking icons"
                 );
                 d3.select("#departure-btn").style("background", "none");
-                change_icon_btn.change_status(false);
+                change_icon_btn.change_status(true);
             } else {
                 clear_links();
                 add_links(out_links, false);
@@ -715,7 +716,7 @@ function main() {
                     "fas fa-plane icons"
                 );
                 d3.select("#departure-btn").style("background", "#7777");
-                change_icon_btn.change_status(false);
+                change_icon_btn.change_status(true);
             }
         };
 
