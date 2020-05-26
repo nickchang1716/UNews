@@ -130,6 +130,8 @@ function main() {
         });
         d3.select("#departure-btn").on("click", function () {
             departure_btn.change_status();
+            // TODO: Modifiy below code.
+            selectStatus();
         });
     });
 

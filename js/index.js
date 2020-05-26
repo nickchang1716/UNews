@@ -1,5 +1,3 @@
-// console.log("hello");
-
 //以下為出境、入境圖
 const margin_entry_exit = {
   left: 80,
@@ -9,13 +7,16 @@ const margin_entry_exit = {
 };
 const padding = 10;
 const width_entry_exit = 800;
-const height_entry_exit = 400;
+const height_entry_exit = 300;
 
 const white = "#fff";
 const black = "#000";
 const levelColors = ["#70def1", "#fee698", "#ffbbbe", "#dd84a1"];
 
 let formatComma = d3.format(",d");
+
+let airportGraph = document.querySelector("#airportGraph");
+let countryName = document.querySelector("#countryName");
 
 let status = document.querySelector("#status");
 let country = document.querySelector("#country");
@@ -24,17 +25,20 @@ let note = document.querySelector("#note");
 function selectStatus() {
   country.value = "";
   note.innerHTML = "";
-  d3.select('#chart svg').remove();
+  airportGraph.style.display = "none";
 }
 
 function selectCountry() {
   d3.select('#chart svg').remove();
 
-  // console.log(status.value + ": " + country.value);
   if (country.value !== "") {
+    airportGraph.style.display = "block";
+
     if (status.value == "arrival") {
+      countryName.innerHTML = country.options[country.selectedIndex].text + " (入境)";
       drawArrival(arrivalData[country.value]);
     } else if (status.value == "departure") {
+      countryName.innerHTML = country.options[country.selectedIndex].text + " (出境)";
       drawDeparture(departureData[country.value]);
     }
   }
