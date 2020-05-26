@@ -135,10 +135,6 @@ body {
   text-align: center;
 }
 
-#airportGraph, #selection-controller {
-  display: none;
-}
-
 #countryName {
   width: 120px;
   padding: 5px 10px;

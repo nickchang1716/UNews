@@ -131,7 +131,7 @@ function main() {
         d3.select("#departure-btn").on("click", function () {
             departure_btn.change_status();
             // TODO: Modifiy below code.
-            selectStatus();
+            selectStatus(false, departure_btn.departure);
         });
     });
 
@@ -232,7 +232,7 @@ function main() {
         svg.append("text")
             .attr("x", "3.5em")
             .attr("y", "1.5em")
-            .text("航班數量")
+            .text("旅客人數")
             .style("font-size", "1em")
             .attr("text-anchor", "left")
             .attr("alignment-baseline", "middle")
@@ -562,7 +562,7 @@ function main() {
 
                                 titlebox
                                     .select("text")
-                                    .html("航班數量 - " + data_date[i - 1]);
+                                    .html("旅客人數 - " + data_date[i - 1]);
 
                                 break;
                             }

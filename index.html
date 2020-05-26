@@ -69,13 +69,12 @@
         <svg id="mapSvg"></svg>
         <!-- 出境、入境折線長條圖 -->
         <div class="graph-wrapper" id="airportGraph">
-          <div id="selection-controller">
-            <select id="status" onchange="selectStatus()">
+          <div style="display:none">
+            <select id="status" onchange="selectStatus(true)">
               <option value="arrival">入境</option>
               <option value="departure">出境</option>
             </select>
             <select id="country" onchange="selectCountry()">
-              <option value="">--國家--</option>
               <option value="Japan">日本</option>
               <option value="China">中國大陸</option>
               <option value="Hongkong">香港</option>

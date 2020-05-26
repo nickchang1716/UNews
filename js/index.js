@@ -15,32 +15,39 @@ const levelColors = ["#70def1", "#fee698", "#ffbbbe", "#dd84a1"];
 
 let formatComma = d3.format(",d");
 
-let airportGraph = document.querySelector("#airportGraph");
-let countryName = document.querySelector("#countryName");
-
 let status = document.querySelector("#status");
 let country = document.querySelector("#country");
+let countryName = document.querySelector("#countryName");
 let note = document.querySelector("#note");
 
-function selectStatus() {
-  country.value = "";
-  note.innerHTML = "";
-  airportGraph.style.display = "none";
+// init graph of Japan
+selectCountry();
+
+function selectStatus(devMode, isDeparture = false) {
+  // if not development mode
+  if (!devMode) {
+    if (!isDeparture) {
+      status.value = "arrival";
+    } else {
+      status.value = "departure";
+    }
+  }
+
+  selectCountry();
 }
 
 function selectCountry() {
   d3.select('#chart svg').remove();
 
-  if (country.value !== "") {
-    airportGraph.style.display = "block";
+  // set country name
+  countryName.innerHTML = country.options[country.selectedIndex].text + " (" + status.options[status.selectedIndex].text + ")";
+  // clear note
+  note.innerHTML = "";
 
-    if (status.value == "arrival") {
-      countryName.innerHTML = country.options[country.selectedIndex].text + " (入境)";
-      drawArrival(arrivalData[country.value]);
-    } else if (status.value == "departure") {
-      countryName.innerHTML = country.options[country.selectedIndex].text + " (出境)";
-      drawDeparture(departureData[country.value]);
-    }
+  if (status.value == "arrival") {
+    drawArrival(arrivalData[country.value]);
+  } else if (status.value == "departure") {
+    drawDeparture(departureData[country.value]);
   }
 }
 
