@@ -1,3 +1,11 @@
+$(document).ready(() => {
+  $('html,body').animate({
+    scrollTop: 0
+  }, 'slow');
+});
+$(".video").on("click", () => {
+  $("video").prop('muted', false);
+})
 // let s1 = $("#section1").offset().top;
 // let s2 = $("#section2").offset().top;
 // let s3 = $("#section3").offset().top;
