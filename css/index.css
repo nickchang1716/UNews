@@ -14,7 +14,7 @@
   .img-size {
     width: 900px;
     height: auto;
-    background-color: cadetblue;
+    background-color: #03152b;
     text-align: center;
   }
 }
@@ -27,7 +27,7 @@ body {
 }
 
 .skyblue {
-  background-color: #043353;
+  background-color: #dadfe6;
   padding-top: 20px;
 }
 
@@ -38,19 +38,24 @@ body {
 .main-title {
   text-align: center;
   font-size: 50px;
-  color: #ffffff
+  color: black;
 }
 
 .article-text {
   font-size: 18px;
   margin-bottom: 40px;
-  color: white
+  color: black;
 }
 
 .sub-title {
   text-align: center;
   font-size: 30px;
-  color: #ffffff;
+  color: #03152b;
+  border:2px solid #03152b;
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 6px;
+  margin: 0;
 }
 
 .axis path,
@@ -212,9 +217,11 @@ video {
   .sub-title {
     font-size: 50px;
     background: white;
-    color: black;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    display: block;
+    padding: 25px 0;
+    border-radius: 0;
+    margin: 50px auto 50px auto;
+    border: 0;
   }
 
   .article-text {
@@ -228,7 +235,7 @@ video {
 
   .img-size {
     width: calc(900/1024*100%);
-    background-color: cadetblue;
+    background-color: #03152b;
     text-align: center;
   }
 }

@@ -698,7 +698,7 @@ function main() {
                 add_links(in_links, true);
                 titlebox
                     .select(".title")
-                    .html("大學報 - 航空業面臨疫情之影響 (入境)");
+                    .html("航空業面臨疫情之影響 (入境)");
                 d3.select("#change-icon-btn").attr(
                     "class",
                     "fas fa-walking icons"
@@ -710,7 +710,7 @@ function main() {
                 add_links(out_links, false);
                 titlebox
                     .select(".title")
-                    .html("大學報 - 航空業面臨疫情之影響 (出境)");
+                    .html("航空業面臨疫情之影響 (出境)");
                 d3.select("#change-icon-btn").attr(
                     "class",
                     "fas fa-plane icons"
