@@ -17,6 +17,7 @@ let s1 = $("#section1").height();
 let s2 = $("#section2").height();
 let s3 = $("#section3").height();
 let s4 = $("#section4").height();
+let s5 = $("#section5").height();
 let viewheight = screen.height;
 //console.log(viewheight);
 // console.log(s1);
@@ -46,5 +47,8 @@ $(document).scroll(function() {
   }
   if (windowY > s0 + s1 + s2 + s3 - viewheight * 0.8) {
     ani($("#section4"));
+  }
+  if (windowY > s0 + s1 + s2 + s3 + s4 - viewheight * 0.8) {
+    ani($("#section5"));
   }
 })

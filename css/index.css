@@ -106,7 +106,7 @@ body {
 }
 
 .slideContents {
-  padding: 30px;
+  padding: 30px 100px;
 }
 
 .item {
@@ -115,19 +115,19 @@ body {
 
 .item img {
   /* margin-bottom: 30px; */
-  width: 30%;
+  width: 40%;
   float: left;
-  margin-top: 12%;
 }
 
 .reliefText {
   float: right;
-  width: 65%;
-  color: white;
+  width: 55%;
+  color: #8d8d8e;
+  font-size: 16px;
 }
 
 .reliefTitle {
-  color: #8d8d8e;
+  color: gray;
 }
 
 .footer {
