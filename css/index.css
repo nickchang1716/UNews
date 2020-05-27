@@ -63,6 +63,12 @@ body {
   margin-top: -40px;
 }
 
+.board-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -120,7 +126,7 @@ body {
   color: white;
 }
 
-.reliefTitle{
+.reliefTitle {
   color: #8d8d8e;
 }
 
