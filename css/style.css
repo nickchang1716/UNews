@@ -82,5 +82,7 @@ body {
 
   #smallMapSVG {
     right: 27vw;
+    width: 14vw;
+    height: 14vw;
   }
 }
