@@ -204,7 +204,7 @@ function main() {
             .style("border-radius", ".5em")
             .style("border-style", "solid")
             .style("border-color", "#ccc3")
-            .style("background-color", "transparent")
+            .style("background-color", "rgba(255,255,255,0.5)")
             .style("cursor", "pointer")
             .on("mouseover", function () {
                 d3.select(this).style("border-color", "#ccc");
