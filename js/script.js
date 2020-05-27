@@ -79,7 +79,7 @@ function main() {
         );
 
         var tooltip = create_tooltip();
-        var titlebox = create_titlebox("大學報 - 航空業面臨疫情之影響 (入境)");
+        var titlebox = create_titlebox("航空業面臨疫情之影響 (入境)");
         var infobox = create_infobox(titlebox);
         var globe_bg = draw_globe_bg(infobox, ocean_color);
         var countries = draw_countries(

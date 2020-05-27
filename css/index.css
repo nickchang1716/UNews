@@ -114,7 +114,7 @@ body {
 }
 
 .footer {
-  background-color: rgba(228, 228, 228, 0.857);
+  background-color: #eee;
 }
 
 .author {
@@ -237,5 +237,9 @@ video {
     width: calc(900/1024*100%);
     background-color: #03152b;
     text-align: center;
+  }
+
+  .author{
+    font-size: 25px;
   }
 }
