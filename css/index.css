@@ -14,12 +14,10 @@
   .img-size {
     width: 900px;
     height: auto;
-    background-color: #03152b;
+    background-color: #d4d4d4;
     text-align: center;
   }
 }
-
-
 
 body {
   font-family: Noto Sans TC, sans-serif;
@@ -45,16 +43,29 @@ body {
   font-size: 18px;
   margin-bottom: 40px;
   color: black;
+  line-height: 2.5;
 }
 
 .sub-title {
   text-align: center;
   font-size: 30px;
   color: #03152b;
-  border:2px solid #03152b;
+  border: 2px solid #03152b;
   display: inline-block;
   padding: 15px 20px;
   border-radius: 6px;
+  margin: 0;
+}
+
+.img-text {
+  text-align: center;
+  font-size: 16px;
+  margin-top: -40px;
+}
+
+.board-text {
+  font-size: 16px;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -106,11 +117,17 @@ body {
   /* margin-bottom: 30px; */
   width: 30%;
   float: left;
+  margin-top: 12%;
 }
 
 .reliefText {
   float: right;
   width: 65%;
+  color: white;
+}
+
+.reliefTitle {
+  color: #8d8d8e;
 }
 
 .footer {
@@ -200,7 +217,6 @@ video {
   width: 100%;
   height:100%;
 } */
-
 @media(max-width: 1023px) {
   .desktop {
     display: none;
@@ -232,14 +248,13 @@ video {
     margin: 50px auto 50px auto;
   }
 
-
   .img-size {
     width: calc(900/1024*100%);
-    background-color: #03152b;
+    background-color: #d4d4d4;
     text-align: center;
   }
 
-  .author{
+  .author {
     font-size: 25px;
   }
 }
