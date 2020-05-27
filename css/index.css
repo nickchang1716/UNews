@@ -111,6 +111,7 @@ body {
 .reliefText {
   float: right;
   width: 65%;
+  color: white;
 }
 
 .footer {
