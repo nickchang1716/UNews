@@ -58,3 +58,9 @@ body {
     right: 22vw;
   }
 }
+
+@media(min-width: 1700px) {
+  #infobox {
+    right: 26vw;
+  }
+}
