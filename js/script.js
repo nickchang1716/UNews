@@ -5,14 +5,26 @@ function main() {
     var width = rect.width,
         height = rect.height;
 
-    var svg = d3.select("svg");
+    var small_width = rect.width * 0.2,
+        small_height = rect.height * 0.2;
+
+    var svg = d3.select("#mapSvg");
+    var small_svg = d3.select("#smallMapSVG");
+    small_svg.style("border", "1px solid").style("border-radius", "1em");
 
     const TaiwanCoords = [121.5654, 25.033];
     const translation = [width / 2, height / 2];
+    const small_translation = [small_width / 2, small_width / 2];
     var projection = three_d_map(width / 1.8, translation, TaiwanCoords);
     var path = d3.geoPath().projection(projection);
+    var small_projection = three_d_map(width / 7, small_translation, [
+        TaiwanCoords[0] + 70,
+        TaiwanCoords[1] + 20,
+    ]);
+    var small_path = d3.geoPath().projection(small_projection);
 
     const InitialScale = projection.scale();
+    const SmallInitialScale = small_projection.scale();
     const Sensitivity = 100;
     const CountriesColor = "#F4F6FC";
     const ocean_color = "#CCDCF2";
@@ -81,20 +93,75 @@ function main() {
         var tooltip = create_tooltip();
         var titlebox = create_titlebox("航空業面臨疫情之影響 (入境)");
         var infobox = create_infobox(titlebox);
-        var globe_bg = draw_globe_bg(infobox, ocean_color);
+        var globe_bg = draw_globe_bg(
+            svg,
+            translation,
+            InitialScale,
+            infobox,
+            ocean_color
+        );
+        var small_globe_bg = draw_globe_bg(
+            small_svg,
+            small_translation,
+            SmallInitialScale,
+            infobox,
+            "#BBCBE1"
+        );
         var countries = draw_countries(
+            svg,
             topojson_world,
+            path,
             tooltip,
             infobox,
             flights_data_dict
         );
-        var target_boundries = draw_boundries(target_world_mesh, "#111");
-        var rest_boundries = draw_boundries(rest_world_mesh, "#999");
-        var graticule = draw_graticule();
+        var small_countries = draw_countries(
+            small_svg,
+            topojson_world,
+            small_path,
+            tooltip,
+            infobox,
+            flights_data_dict
+        );
+        var target_boundries = draw_boundries(
+            svg,
+            path,
+            target_world_mesh,
+            "#111"
+        );
+        var small_target_boundries = draw_boundries(
+            small_svg,
+            small_path,
+            target_world_mesh,
+            "#111"
+        );
+        var rest_boundries = draw_boundries(svg, path, rest_world_mesh, "#999");
+        var small_rest_boundries = draw_boundries(
+            small_svg,
+            small_path,
+            rest_world_mesh,
+            "#999"
+        );
+        var graticule = draw_graticule(svg);
+        var small_graticule = draw_graticule(small_svg);
         var links_data = create_links(flights_data, count);
         var in_links = links_data[0],
             out_links = links_data[1];
         var links_components = draw_links(
+            svg,
+            path,
+            flights_data_dict,
+            in_links,
+            infobox,
+            titlebox,
+            tooltip,
+            true,
+            point_color,
+            link_color
+        );
+        var small_links_components = draw_links(
+            small_svg,
+            small_path,
             flights_data_dict,
             in_links,
             infobox,
@@ -107,16 +174,16 @@ function main() {
         var links = links_components[0],
             points = links_components[1];
 
-        enable_scroll_effect(globe_bg, links, points);
         rotation_btn = new Rotation_Btn(globe_bg);
         change_icon_btn = new Change_Icon_Btn(
-            links_components,
+            [links_components, small_links_components],
             titlebox,
             point_color
         );
         departure_btn = new Departure_Btn(
             flights_data_dict,
             links_components,
+            small_links_components,
             in_links,
             out_links,
             infobox,
@@ -126,6 +193,7 @@ function main() {
         );
 
         change_icon_btn.change_status(true);
+
         d3.select("#change-icon-btn").on("click", function () {
             change_icon_btn.change_status();
         });
@@ -133,6 +201,9 @@ function main() {
             departure_btn.change_status();
             // TODO: Modifiy below code.
             selectStatus(false, departure_btn.departure);
+        });
+        d3.select("#rotation-btn").on("click", function () {
+            rotation_btn.change_status();
         });
     });
 
@@ -239,6 +310,12 @@ function main() {
             .attr("alignment-baseline", "middle")
             .style("fill", "#333d");
 
+        // titlebox
+        //     .append("svg")
+        //     .style("width", "10vw")
+        //     .style("height", "10vh")
+        //     .attr("id", "smallMapSVG");
+
         return titlebox;
     }
 
@@ -249,7 +326,7 @@ function main() {
 
         let infobox = root
             .append("div")
-            .attr("id", "infobox")
+            .attr("id", "infobox2")
             .style("height", "60vh")
             .style("width", "inherit")
             .style("background-color", "#ddd")
@@ -276,15 +353,21 @@ function main() {
         return infobox;
     }
 
-    function draw_globe_bg(infobox, color = "#97E5EF") {
-        let globe_bg = svg
+    function draw_globe_bg(
+        root,
+        translation,
+        scale,
+        infobox,
+        color = "#97E5EF"
+    ) {
+        let globe_bg = root
             .append("circle")
             .attr("fill", color)
             .attr("stroke", "#000")
             .attr("stroke-width", "0.2")
             .attr("cx", translation[0])
             .attr("cy", translation[1])
-            .attr("r", InitialScale)
+            .attr("r", scale)
             .attr("class", "globe_bg")
             .attr("cursor", "pointer")
             .on("click", function () {
@@ -294,14 +377,14 @@ function main() {
         return globe_bg;
     }
 
-    function draw_countries(world, tooltip, infobox, flights_data) {
-        let countries = svg
+    function draw_countries(root, world, path, tooltip, infobox, flights_data) {
+        let countries = root
             .selectAll("_path")
             .data(world.features)
             .enter()
             .append("path")
             .attr("d", path)
-            .attr("id", (d) => "country" + d.id)
+            .attr("class", (d) => "country" + d.id)
             .style("fill", CountriesColor)
             .style("opacity", (d) => {
                 if (d.id in flights_data) {
@@ -341,20 +424,17 @@ function main() {
 
     function highlight(code, on, country_color = "#ffb367aa") {
         if (on) {
-            d3.select("#link" + code).style("opacity", 1);
-            d3.select("#country" + code).style("fill", country_color);
-            d3.select("#country158").style("fill", country_color);
+            d3.selectAll(".link" + code).style("opacity", 1);
+            d3.selectAll(".country" + code).style("fill", country_color);
+            d3.selectAll(".country158").style("fill", country_color);
         } else {
-            d3.select("#link" + code).style("opacity", 0.25);
-            d3.select("#country" + code).style("fill", CountriesColor);
-            d3.select("#country158").style("fill", CountriesColor);
+            d3.selectAll(".link" + code).style("opacity", 0.25);
+            d3.selectAll(".country" + code).style("fill", CountriesColor);
+            d3.selectAll(".country158").style("fill", CountriesColor);
         }
     }
 
     function show_info(flight_data, infobox) {
-        // infobox.style("display", "block");
-        // infobox.select(".title").text(flight_data["國家"]);
-
         // TODO: Modifiy below code.
         if (departure_btn.departure) {
             d3.select("#status").property("value", "departure");
@@ -367,16 +447,14 @@ function main() {
             .each(() => {
                 selectCountry();
             });
-
-        infobox.select("svg");
     }
 
     function set_tooltip(flight_data, tooltip) {
         tooltip.text(flight_data["國家"]).style("visibility", "visible");
     }
 
-    function draw_boundries(world, color = "#333") {
-        let boundaries = svg
+    function draw_boundries(root, path, world, color = "#333") {
+        let boundaries = root
             .append("path")
             .datum(world)
             .attr("d", path)
@@ -387,8 +465,8 @@ function main() {
         return boundaries;
     }
 
-    function draw_graticule(step = [10, 10]) {
-        let graticule = svg
+    function draw_graticule(root, step = [10, 10]) {
+        let graticule = root
             .append("path")
             .datum(d3.geoGraticule().step(step))
             .attr("d", path)
@@ -426,6 +504,8 @@ function main() {
     }
 
     function draw_links(
+        root,
+        path,
         flights_data,
         links_data,
         infobox,
@@ -437,14 +517,14 @@ function main() {
         link_duration = 10000,
         point_duration = 10000
     ) {
-        let links_base = svg.selectAll("_path").data(links_data).enter();
+        let links_base = root.selectAll("_path").data(links_data).enter();
 
         // Draw Links
         let links = links_base
             .append("path")
             .attr("d", (d) => path(d))
             .attr("class", "link")
-            .attr("id", (d) => "link" + d.code)
+            .attr("class", (d) => "link" + d.code)
             .style("fill", "none")
             .style("stroke-width", projection.scale() * LinksScale)
             .style("stroke-linecap", "round")
@@ -472,7 +552,7 @@ function main() {
         // Draw Points
         var points = links_base
             .append("circle")
-            .attr("id", (d) => "point" + d.code)
+            .attr("class", (d) => "point" + d.code)
             .attr("r", InitialScale / 150)
             .attr("cx", (d, i) => {
                 let path_node = links.nodes()[i],
@@ -581,32 +661,6 @@ function main() {
         return [links, points];
     }
 
-    function enable_scroll_effect(globe_bg, links, points) {
-        svg.call(
-            d3.drag().on("drag", () => {
-                const rotate = projection.rotate();
-                const k = Sensitivity / projection.scale();
-                projection.rotate([
-                    rotate[0] + d3.event.dx * k,
-                    rotate[1] - d3.event.dy * k,
-                ]);
-                // Update all path
-                path = d3.geoPath().projection(projection);
-                svg.selectAll("path").attr("d", path);
-            })
-        ).call(
-            d3.zoom().on("zoom", () => {
-                if (d3.event.transform.k > ZoomRange[0]) {
-                    d3.event.transform.k = ZoomRange[0];
-                    switch_view(0, globe_bg);
-                } else if (d3.event.transform.k < ZoomRange[1]) {
-                    d3.event.transform.k = ZoomRange[1];
-                    switch_view(1, globe_bg);
-                }
-            })
-        );
-    }
-
     function switch_view(idx, globe_bg) {
         var curr_rotate = projection.rotate();
 
@@ -614,12 +668,10 @@ function main() {
             var next_rotate = [-TaiwanCoords[0], -TaiwanCoords[1]];
             projection.scale(InitialScale);
             globe_bg.attr("r", projection.scale());
-            var flat = true;
         } else if (idx == 1) {
             var next_rotate = [-TaiwanCoords[0] - 70, -TaiwanCoords[1] - 20];
             projection.scale(InitialScale * 0.7);
             globe_bg.attr("r", projection.scale());
-            var flat = false;
         }
 
         if (next_rotate != curr_rotate) {
@@ -649,23 +701,51 @@ function main() {
                     }, 200);
                 }
             });
+
+            small_svg.selectAll("path").attr("d", function (d) {
+                // don't apply transition to links and points
+                if (d3.select(this).attr("class") != "link") {
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attrTween("d", function (d) {
+                            let r = d3.interpolate(next_rotate, curr_rotate);
+
+                            return function (t) {
+                                small_projection.rotate(r(t));
+
+                                small_path = d3
+                                    .geoPath()
+                                    .projection(small_projection);
+                                let pathD = small_path(d);
+                                return pathD == null ? "" : pathD;
+                            };
+                        });
+                } else {
+                    small_projection.rotate(next_rotate);
+                    small_path = d3.geoPath().projection(small_projection);
+                    let curr_link = d3.select(this);
+                    setTimeout(function () {
+                        curr_link.attr("d", small_path);
+                    }, 200);
+                }
+            });
         }
     }
 
     function Rotation_Btn(globe_bg) {
-        this.enable_rotation = false;
+        this.enable_rotation = true;
 
-        let rotation_btn = d3.select("#rotation-btn").on("click", function () {
-            if (this.enable_rotate) {
-                this.enable_rotate = false;
+        this.change_status = function () {
+            this.enable_rotation = !this.enable_rotation;
+            if (this.enable_rotation) {
                 switch_view(0, globe_bg);
-                d3.select(this).style("background", "none");
+                d3.select("#rotation-btn").style("background", "none");
             } else {
-                this.enable_rotate = true;
                 switch_view(1, globe_bg);
-                d3.select(this).style("background", "#7777");
+                d3.select("#rotation-btn").style("background", "#7777");
             }
-        });
+        };
 
         function rotate(elapsed) {
             const rotate = projection.rotate();
@@ -681,6 +761,7 @@ function main() {
     function Departure_Btn(
         flights_data_dict,
         links_components,
+        links_components2,
         in_links,
         out_links,
         infobox,
@@ -696,9 +777,7 @@ function main() {
             if (this.departure == false) {
                 clear_links();
                 add_links(in_links, true);
-                titlebox
-                    .select(".title")
-                    .html("航空業面臨疫情之影響 (入境)");
+                titlebox.select(".title").html("航空業面臨疫情之影響 (入境)");
                 d3.select("#change-icon-btn").attr(
                     "class",
                     "fas fa-walking icons"
@@ -708,9 +787,7 @@ function main() {
             } else {
                 clear_links();
                 add_links(out_links, false);
-                titlebox
-                    .select(".title")
-                    .html("航空業面臨疫情之影響 (出境)");
+                titlebox.select(".title").html("航空業面臨疫情之影響 (出境)");
                 d3.select("#change-icon-btn").attr(
                     "class",
                     "fas fa-plane icons"
@@ -721,14 +798,21 @@ function main() {
         };
 
         function clear_links() {
+            console.log(links_components2);
             for (let i = links_components.length - 1; i >= 0; --i) {
                 links_components[i].remove();
                 links_components.pop();
+            }
+            for (let i = links_components2.length - 1; i >= 0; --i) {
+                links_components2[i].remove();
+                links_components2.pop();
             }
         }
 
         function add_links(links, dynamic_size) {
             var components = draw_links(
+                svg,
+                path,
                 flights_data_dict,
                 links,
                 infobox,
@@ -740,6 +824,21 @@ function main() {
             );
             for (let i = 0; i < components.length; ++i) {
                 links_components.push(components[i]);
+            }
+            var small_components = draw_links(
+                small_svg,
+                small_path,
+                flights_data_dict,
+                links,
+                infobox,
+                titlebox,
+                tooltip,
+                dynamic_size,
+                point_color,
+                link_color
+            );
+            for (let i = 0; i < small_components.length; ++i) {
+                links_components2.push(small_components[i]);
             }
         }
     }
@@ -754,32 +853,34 @@ function main() {
                 this.show = show;
             }
 
-            let points = links_components[1];
-            if (this.show == false) {
-                d3.select("#change-icon-btn").style("background", "none");
-                points.style("fill", point_color);
-                PointsScale = PointsScaleList[0];
-                titlebox
-                    .select("circle")
-                    .style("fill", point_color)
-                    .attr("r", ".5em");
-            } else {
-                let classes = d3.select("#change-icon-btn").attr("class"),
-                    img_id;
-                if (classes == "fas fa-walking icons") {
-                    img_id = img_person_id;
-                } else if (classes == "fas fa-plane icons") {
-                    img_id = img_plane_id;
-                }
+            links_components.forEach((links_component) => {
+                let points = links_component[1];
+                if (this.show == false) {
+                    d3.select("#change-icon-btn").style("background", "none");
+                    points.style("fill", point_color);
+                    PointsScale = PointsScaleList[0];
+                    titlebox
+                        .select("circle")
+                        .style("fill", point_color)
+                        .attr("r", ".5em");
+                } else {
+                    let classes = d3.select("#change-icon-btn").attr("class"),
+                        img_id;
+                    if (classes == "fas fa-walking icons") {
+                        img_id = img_person_id;
+                    } else if (classes == "fas fa-plane icons") {
+                        img_id = img_plane_id;
+                    }
 
-                d3.select("#change-icon-btn").style("background", "#7777");
-                points.style("fill", "url(#" + img_id + ")");
-                PointsScale = PointsScaleList[1];
-                titlebox
-                    .select("circle")
-                    .style("fill", "url(#" + img_id + ")")
-                    .attr("r", "1em");
-            }
+                    d3.select("#change-icon-btn").style("background", "#7777");
+                    points.style("fill", "url(#" + img_id + ")");
+                    PointsScale = PointsScaleList[1];
+                    titlebox
+                        .select("circle")
+                        .style("fill", "url(#" + img_id + ")")
+                        .attr("r", "1em");
+                }
+            });
         };
     }
 }
