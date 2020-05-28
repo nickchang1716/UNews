@@ -14,8 +14,8 @@ function main() {
 
     const TaiwanCoords = [121.5654, 25.033];
     const translation = [width / 2, height / 2];
-    const small_translation = [small_width / 1.8, small_width / 1.8];
-    var projection = three_d_map(width / 1.8, translation, TaiwanCoords);
+    const small_translation = [small_width / 1.6, small_width / 1.6];
+    var projection = three_d_map(width / 2, translation, TaiwanCoords);
     var path = d3.geoPath().projection(projection);
     var small_projection = three_d_map(width / 7.5, small_translation, [
         TaiwanCoords[0] + 70,
