@@ -10,7 +10,7 @@ function main() {
 
     var svg = d3.select("#mapSvg");
     var small_svg = d3.select("#smallMapSVG");
-    small_svg.style("border", "1px solid").style("border-radius", "1em");
+    small_svg.style("border", "1px solid #666a").style("border-radius", "1em");
 
     const TaiwanCoords = [121.5654, 25.033];
     const translation = [width / 2, height / 2];
