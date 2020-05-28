@@ -30,7 +30,7 @@ function main() {
     const ocean_color = "#CCDCF2";
     const point_color = "orange";
     const link_color = "#5A7BB5";
-    const text_color = ["#142850", "#52437b", "#0c7b93", "#00a8cc"];
+    const text_color = ["#0E4E90", "#1A79DB", "#3EB5E1", "#A6DFF2"];
     const ZoomRange = [1, 1];
     const LinksScale = 0.013;
     const PointsScaleList = [0.015, 0.03];
