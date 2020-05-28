@@ -292,24 +292,33 @@ function main() {
       .style("color", "#222c")
       .html(title);
 
-    // let svg = titlebox
-    //   .append("svg")
-    //   .style("height", "2.5em")
-    //   .style("max-width", "21em");
-    // svg.append("circle")
-    //   .attr("cx", "2.5em")
-    //   .attr("cy", "1.5em")
-    //   .attr("r", ".5em")
-    //   .style("fill", "orange");
-    // svg.append("text")
-    //   .attr("x", "3.5em")
-    //   .attr("y", "1.5em")
-    //   .text("旅客人數")
-    //   .style("font-size", "1em")
-    //   .attr("text-anchor", "left")
-    //   .attr("alignment-baseline", "middle")
-    //   .style("fill", "#333d");
-    // svg.style("display", "none");
+    let svg = titlebox
+      .append("svg")
+      .style("height", "2.5em")
+      .style("max-width", "21em");
+    svg.append("circle")
+      .attr("cx", "2.5em")
+      .attr("cy", "1.5em")
+      .attr("r", ".5em")
+      .style("fill", "orange");
+    svg.append("text")
+      .attr("x", "3.5em")
+      .attr("y", "1.5em")
+      .text("旅客人數 - ")
+      .style("font-size", "1em")
+      .attr("text-anchor", "left")
+      .attr("alignment-baseline", "middle")
+      .style("fill", "#333d");
+    svg.append("text")
+      .attr("class", "infobox-date")
+      .attr("x", "8.5em")
+      .attr("y", "1.5em")
+      .text("")
+      .style("font-size", "1em")
+      .style("font-weight", "bold")
+      .attr("text-anchor", "left")
+      .attr("alignment-baseline", "middle")
+      .style("fill", "orange");
 
     // titlebox
     //     .append("svg")
@@ -643,8 +652,8 @@ function main() {
                   );
 
                 titlebox
-                  .select("text")
-                  .html("旅客人數 - " + data_date[i - 1]);
+                  .select(".infobox-date")
+                  .html(data_date[i - 1]);
 
                 break;
               }
